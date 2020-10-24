@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="weight_big_sound_button">100dp</dimen>
+    <dimen name="height_big_sound_button">60dp</dimen>
+    <dimen name="height_smal_sound_button">55dp</dimen>
+    <dimen name="zero_sound_button">55dp</dimen>
+    <dimen name="weight_smal_sound_button">90dp</dimen>
+    <dimen name="button_elevation">8dp</dimen>
+    <dimen name="anim_elevation">3dp</dimen>
+</resources>
