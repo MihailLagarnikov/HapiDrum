@@ -12,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class LoopPlayer(val context: Context, val viewGroup: ViewGroup) {
-    private val MAX_STREAM = 20
+    private val MAX_STREAM = 30
     private val PRIORITY = 1
     private val LEFT_VALUME_DEF = 1f
     private val RIGHT_VALUME_DEF = 1f
@@ -63,6 +63,7 @@ class LoopPlayer(val context: Context, val viewGroup: ViewGroup) {
             if (streamId != null) {
                 mSounPool.stop(streamId)
             }
+            mSounPool.autoResume()
             return mSounPool.play(soundId,
                 LEFT_VALUME_DEF * touchParam.getTouchChangeValue(timeTouch) * sondName.leftValueParam,
                 RIGHT_VALUME_DEF* touchParam.getTouchChangeValue(timeTouch) * sondName.rightValueParam,
@@ -78,6 +79,7 @@ class LoopPlayer(val context: Context, val viewGroup: ViewGroup) {
                 mSounPool.stop(streamId)
             }
         }
+        mSounPool.autoPause()
     }
 
     fun randomTouchEvent(view: View, timeTouch: Long){
