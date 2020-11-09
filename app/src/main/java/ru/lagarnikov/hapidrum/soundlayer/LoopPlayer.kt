@@ -11,7 +11,7 @@ import ru.lagarnikov.hapidrum.ui.AnimTouch
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LoopPlayer(val context: Context, val viewGroup: ViewGroup) {
+class LoopPlayer(context: Context, val viewGroup: ViewGroup) {
     private val MAX_STREAM = 30
     private val PRIORITY = 1
     private val LEFT_VALUME_DEF = 1f
