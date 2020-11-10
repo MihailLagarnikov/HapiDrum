@@ -6,18 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.main_instrument_fragment.*
 import ru.lagarnikov.hapidrum.MyMediaPlayer
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.RandomPlayer
+import ru.lagarnikov.hapidrum.core.ChildInstrumentFragmentListener
+import ru.lagarnikov.hapidrum.core.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.soundlayer.LoopPlayer
 import ru.lagarnikov.hapidrum.soundlayer.Sounds
 import ru.lagarnikov.hapidrum.ui.FonHolder
 
-class MainFragment: Fragment() {
+
+class MainFragment : Fragment() {
 
     private val fonHolder = FonHolder()
-    private lateinit var loopPlayer : LoopPlayer
+    private val loopPlayer = LoopPlayer(requireContext())
+    private var childInstrumentFragmentListener: ChildInstrumentFragmentListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,59 +35,47 @@ class MainFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadSamples()
         loadMusicFon()
         loadRandomgenerator()
+        createInstrumentChangeObserver()
     }
 
-    private fun loadMusicFon(){
-        image_music_fon.setOnClickListener {
-            (it as ImageView)
-                .setImageResource(if (MyMediaPlayer(requireContext()).startMusick()) R.drawable.btn_music_fon
-                else R.drawable.btn_music_fon_off)
+    private fun createInstrumentChangeObserver() {
+        val fragmentContainer = view?.findViewById<View>(R.id.instrument_container)
+        val navController = Navigation.findNavController(fragmentContainer!!)
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            val currentFragment =
+                instrument_container.childFragmentManager.fragments.firstOrNull { it.isVisible }
+            if (currentFragment is ChildInstrumentFragmentListener) {
+                loadSamples(currentFragment.getInstrumentParams())
+            }
         }
     }
 
-    private fun  loadSamples(){
-
-        loopPlayer = LoopPlayer(
-            requireContext(),
-            requireView().findViewById(R.id.container)
-        )
-
-        loopPlayer.setViewSoundListener(button_zero,
-            Sounds.ZERO
-        )
-        loopPlayer.setViewSoundListener(button_a,
-            Sounds.A
-        )
-        loopPlayer.setViewSoundListener(button_b,
-            Sounds.B
-        )
-        loopPlayer.setViewSoundListener(button_c,
-            Sounds.C
-        )
-        loopPlayer.setViewSoundListener(button_d,
-            Sounds.D
-        )
-        loopPlayer.setViewSoundListener(button_e,
-            Sounds.E
-        )
-        loopPlayer.setViewSoundListener(button_f,
-            Sounds.F
-        )
-        loopPlayer.setViewSoundListener(button_g,
-            Sounds.G
-        )
-        loopPlayer.setViewSoundListener(button_h,
-            Sounds.H
-        )
-        stop_all.setOnClickListener { loopPlayer.stopAllSounds() }
-        image_fon.setOnClickListener {fonHolder.setFonFor(fon_image) }
+    private fun loadMusicFon() {
+        image_music_fon.setOnClickListener {
+            (it as ImageView)
+                .setImageResource(
+                    if (MyMediaPlayer(requireContext()).startMusick()) R.drawable.btn_music_fon
+                    else R.drawable.btn_music_fon_off
+                )
+        }
     }
 
-    private fun loadRandomgenerator(){
-        val randomGenerator = RandomPlayer(loopPlayer,
+    private fun loadSamples(instrumentKeyParamsList: ArrayList<InstrumentKeyParams>) {
+
+        for (params in instrumentKeyParamsList) {
+            loopPlayer.setInstrumentParamsKey(params)
+        }
+
+
+        stop_all.setOnClickListener { loopPlayer.stopAllSounds() }
+        image_fon.setOnClickListener { fonHolder.setFonFor(fon_image) }
+    }
+
+    private fun loadRandomgenerator() {
+        val randomGenerator = RandomPlayer(
+            loopPlayer,
             button_a,
             button_b,
             button_c,
@@ -89,7 +83,8 @@ class MainFragment: Fragment() {
             button_e,
             button_f,
             button_g,
-            button_h, button_zero)
+            button_h, button_zero
+        )
         image_random.setOnClickListener {
             image_random.setImageDrawable(
                 resources.getDrawable(if (randomGenerator.pressGenerator()) R.drawable.auto_pressed else R.drawable.auto)
