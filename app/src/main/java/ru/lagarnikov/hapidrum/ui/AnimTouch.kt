@@ -2,10 +2,7 @@ package ru.lagarnikov.hapidrum.ui
 
 import android.animation.ObjectAnimator
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
-import ru.lagarnikov.hapidrum.soundlayer.Sounds
-import ru.lagarnikov.hapidrum.repositoriy.LoopRepositoriy
 
 class AnimTouch() {
     private val DURATION_ALFA = 100L

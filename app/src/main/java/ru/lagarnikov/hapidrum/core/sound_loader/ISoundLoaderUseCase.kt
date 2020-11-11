@@ -6,6 +6,7 @@ import java.io.File
 
 interface ISoundLoaderUseCase {
     val isLoaded: MutableLiveData<Boolean>
-    fun loadSounds(insrtument: Instruments, fileDir: File, storage: FirebaseStorage)
+    suspend fun loadSounds(insrtument: Instruments, fileDir: File, storage: FirebaseStorage)
     fun isInstrumentSoundLoaded(insrtumentName: String): Boolean
+    fun getLoadingInstrument(): String
 }

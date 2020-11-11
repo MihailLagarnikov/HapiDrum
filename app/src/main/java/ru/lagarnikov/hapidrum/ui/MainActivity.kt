@@ -5,6 +5,9 @@ import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.google.firebase.FirebaseApp
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import org.koin.java.standalone.KoinJavaComponent
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.sound_loader.ISoundLoaderUseCase
@@ -22,22 +25,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(this)
         storage = FirebaseStorage.getInstance()
+        GlobalScope.launch{
+            loadSound()
+        }
     }
 
-    private fun setStartFragment(fragmentId: Int) {
-        val navHost =
-            supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment?
-        val navController = navHost?.navController
-        val navInflater = navController?.navInflater
-        val graph = navInflater?.inflate(R.navigation.nav_graph)
-        graph?.startDestination = fragmentId
-        navController?.graph = graph!!
-    }
 
-    private fun loadSound() {
+
+    private suspend fun loadSound() {
         for (instrument in Instruments.values()) {
             if (!soundLoaderUseCase.isInstrumentSoundLoaded(instrument.name)) {
-                soundLoaderUseCase.loadSounds(instrument, filesDir, storage)
+                val job = GlobalScope.async{
+                    soundLoaderUseCase.loadSounds(instrument, filesDir, storage)
+                }
+                job.await()
             }
         }
     }

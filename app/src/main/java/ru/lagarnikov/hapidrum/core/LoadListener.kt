@@ -9,3 +9,11 @@ enum class StateLoad {
     SUCCESS,
     FAILURE
 }
+
+fun getSimpleState(isSuccsses: Boolean): StateLoad {
+    return if (isSuccsses) {
+        StateLoad.SUCCESS
+    } else {
+        StateLoad.FAILURE
+    }
+}

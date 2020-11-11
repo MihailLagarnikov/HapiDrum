@@ -15,7 +15,6 @@ import ru.lagarnikov.hapidrum.RandomPlayer
 import ru.lagarnikov.hapidrum.core.ChildInstrumentFragmentListener
 import ru.lagarnikov.hapidrum.core.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.soundlayer.LoopPlayer
-import ru.lagarnikov.hapidrum.soundlayer.Sounds
 import ru.lagarnikov.hapidrum.ui.FonHolder
 
 
@@ -47,7 +46,11 @@ class MainFragment : Fragment() {
             val currentFragment =
                 instrument_container.childFragmentManager.fragments.firstOrNull { it.isVisible }
             if (currentFragment is ChildInstrumentFragmentListener) {
-                loadSamples(currentFragment.getInstrumentParams())
+                if (currentFragment.isLoaded()) {
+                    loadSamples(currentFragment.getInstrumentParams())
+                } else {
+                    currentFragment.awaitLoadFinish { loadSamples(it) }
+                }
             }
         }
     }
@@ -63,11 +66,9 @@ class MainFragment : Fragment() {
     }
 
     private fun loadSamples(instrumentKeyParamsList: ArrayList<InstrumentKeyParams>) {
-
         for (params in instrumentKeyParamsList) {
             loopPlayer.setInstrumentParamsKey(params)
         }
-
 
         stop_all.setOnClickListener { loopPlayer.stopAllSounds() }
         image_fon.setOnClickListener { fonHolder.setFonFor(fon_image) }

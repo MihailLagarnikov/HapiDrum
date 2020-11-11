@@ -1,31 +1,28 @@
 package ru.lagarnikov.hapidrum.core
 
+import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import java.io.File
 
 class FairbaseStorageBase() : IFairbaseStorageBase {
     private val SLASH = "/"
 
 
-    override fun loadSound(
+    override suspend fun loadSound(
         instrumentSound: InstrumentSound,
         file: File,
-        storage: FirebaseStorage,
-        loadListener: LoadListener
-    ) {
+        storage: FirebaseStorage
+    ): Deferred<FileDownloadTask> {
         val storageRef = storage.reference.child(
             createRefString(
                 instrumentSound.instrumentName,
                 instrumentSound.soundName
             )
         )
-        loadListener.setLoadState(StateLoad.LOAD, instrumentSound)
-        storageRef.getFile(file).addOnSuccessListener {
-            loadListener.setLoadState(StateLoad.SUCCESS, instrumentSound)
-        }.addOnFailureListener {
-            loadListener.setLoadState(StateLoad.FAILURE, instrumentSound)
-        }
-
+        return GlobalScope.async { storageRef.getFile(file) }
     }
 
     private fun createRefString(vararg path: String): String {

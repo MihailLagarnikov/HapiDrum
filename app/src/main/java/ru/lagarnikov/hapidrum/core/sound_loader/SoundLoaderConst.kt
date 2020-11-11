@@ -2,6 +2,8 @@ package ru.lagarnikov.hapidrum.core.sound_loader
 
 import ru.lagarnikov.hapidrum.core.InstrumentSound
 
+const val SOUND_DIR = "sound"
+
 const val MAIN_ = "main_instrument"
 const val A_ = "a.wav"
 const val B_ = "b.wav"

@@ -5,7 +5,6 @@ import android.media.SoundPool
 import android.view.MotionEvent
 import android.view.View
 import ru.lagarnikov.hapidrum.core.InstrumentKeyParams
-import ru.lagarnikov.hapidrum.repositoriy.LoopRepositoriy
 import ru.lagarnikov.hapidrum.ui.AnimTouch
 import java.util.*
 import kotlin.collections.ArrayList
@@ -16,7 +15,6 @@ class LoopPlayer(val context: Context) {
     private val LEFT_VALUME_DEF = 1f
     private val RIGHT_VALUME_DEF = 1f
     private val RATE_DEF = 1f
-    private val loopRepositoriy = LoopRepositoriy()
     private val touchParam = TouchParam()
     private val streamList = ArrayList<Int?>()
     private val animHandleStop = AnimTouch()
@@ -25,12 +23,6 @@ class LoopPlayer(val context: Context) {
     private val mSounPool = SoundPool.Builder()
         .setMaxStreams(MAX_STREAM)
         .build()
-
-    init {
-        for (loop in loopRepositoriy.getLoopList()) {
-            streamList.add(mSounPool.load(context, loop, PRIORITY))
-        }
-    }
 
     fun setInstrumentParamsKey(instrumentKeyParams: InstrumentKeyParams) {
         viewList.add(instrumentKeyParams.button)
@@ -67,7 +59,7 @@ class LoopPlayer(val context: Context) {
         timeTouch: Long,
         soundId: Int?,
         streamId: Int?,
-        sondName: Sounds
+        sondName: KeyValues
     ): Int? {
         soundId?.run {
             if (streamId != null) {
@@ -96,27 +88,27 @@ class LoopPlayer(val context: Context) {
     }
 
     fun randomTouchEvent(view: View, timeTouch: Long) {
-        val ass = touchSoundEvent(
-            timeTouch,
-            streamList.get(
-                loopRepositoriy.getSoundNumberInList(
-                    loopRepositoriy.getSoundNameFromViewId(view.id)
-                )
-            ),
-            getStrimId(view),
-            loopRepositoriy.getSoundNameFromViewId(view.id)
-        )
+        /* val ass = touchSoundEvent(
+             timeTouch,
+             streamList.get(
+                 loopRepositoriy.getSoundNumberInList(
+                     loopRepositoriy.getSoundNameFromViewId(view.id)
+                 )
+             ),
+             getStrimId(view),
+             loopRepositoriy.getSoundNameFromViewId(view.id)
+         )*/
     }
 
     private fun getStrimId(view: View): Int? {
-        var i = 0
-        while (i < loopRepositoriy.getLoopList().size) {
+        /*var i = 0
+        while (i < streamList.size) {
 
             if (loopRepositoriy.getLoopList().get(i) == view.id) {
                 return streamList.get(i)
             }
             i++
-        }
+        }*/
         return null
     }
 

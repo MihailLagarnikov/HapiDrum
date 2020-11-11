@@ -1,6 +1,6 @@
 package ru.lagarnikov.hapidrum.soundlayer
 
-enum class Sounds(val leftValueParam: Float, val rightValueParam: Float) {
+enum class KeyValues(val leftValueParam: Float, val rightValueParam: Float) {
     A(0.9F, 0.9F),
     B(0.95F, 0.85F),
     C(0.9F, 0.8F),
