@@ -6,23 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_instrument_fragment.*
 import ru.lagarnikov.hapidrum.MyMediaPlayer
 import ru.lagarnikov.hapidrum.R
-import ru.lagarnikov.hapidrum.RandomPlayer
-import ru.lagarnikov.hapidrum.core.ChildInstrumentFragmentListener
-import ru.lagarnikov.hapidrum.core.InstrumentKeyParams
-import ru.lagarnikov.hapidrum.soundlayer.LoopPlayer
-import ru.lagarnikov.hapidrum.ui.FonHolder
+import ru.lagarnikov.hapidrum.core.RandomPlayer
+import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
+import ru.lagarnikov.hapidrum.core.soundlayer.LoopPlayer
+import ru.lagarnikov.hapidrum.core.fon_repositoriy.FonHolder
 
 
 class MainFragment : Fragment() {
 
     private val fonHolder = FonHolder()
-    private val loopPlayer = LoopPlayer(requireContext())
-    private var childInstrumentFragmentListener: ChildInstrumentFragmentListener? = null
+    private lateinit var loopPlayer: LoopPlayer
+    private lateinit var mainFragmentViewModel: MainFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,25 +34,21 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mainFragmentViewModel =
+            ViewModelProviders.of(requireActivity()).get(MainFragmentViewModel::class.java)
+        loopPlayer = LoopPlayer(requireContext())
         loadMusicFon()
-        loadRandomgenerator()
+        /*loadRandomgenerator()*/
+
         createInstrumentChangeObserver()
     }
 
     private fun createInstrumentChangeObserver() {
-        val fragmentContainer = view?.findViewById<View>(R.id.instrument_container)
-        val navController = Navigation.findNavController(fragmentContainer!!)
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            val currentFragment =
-                instrument_container.childFragmentManager.fragments.firstOrNull { it.isVisible }
-            if (currentFragment is ChildInstrumentFragmentListener) {
-                if (currentFragment.isLoaded()) {
-                    loadSamples(currentFragment.getInstrumentParams())
-                } else {
-                    currentFragment.awaitLoadFinish { loadSamples(it) }
-                }
+        mainFragmentViewModel.currentInstrumentKeyParamsList.observe(this, Observer {
+            if (mainFragmentViewModel.isCurrentInstrumentLoaded) {
+                loadSamples(it)
             }
-        }
+        })
     }
 
     private fun loadMusicFon() {

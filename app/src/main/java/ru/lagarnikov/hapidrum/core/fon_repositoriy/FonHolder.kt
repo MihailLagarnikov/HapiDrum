@@ -1,6 +1,5 @@
-package ru.lagarnikov.hapidrum.ui
+package ru.lagarnikov.hapidrum.core.fon_repositoriy
 
-import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import ru.lagarnikov.hapidrum.R

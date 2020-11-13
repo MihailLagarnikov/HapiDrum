@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HapiDrum</string>
     <string name="stop_all">Stop all</string>
+    <string name="has_not_permission">The program cannot work without this permission - you need to download the sounds of the instruments.</string>
 </resources>

@@ -1,4 +1,4 @@
-package ru.lagarnikov.hapidrum.repositoriy
+package ru.lagarnikov.hapidrum.core.fon_repositoriy
 
 import ru.lagarnikov.hapidrum.R
 

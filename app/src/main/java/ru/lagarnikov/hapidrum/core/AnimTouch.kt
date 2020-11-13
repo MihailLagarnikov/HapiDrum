@@ -1,4 +1,4 @@
-package ru.lagarnikov.hapidrum.ui
+package ru.lagarnikov.hapidrum.core
 
 import android.animation.ObjectAnimator
 import android.view.View

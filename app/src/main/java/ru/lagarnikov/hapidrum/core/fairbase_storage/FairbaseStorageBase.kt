@@ -1,13 +1,12 @@
-package ru.lagarnikov.hapidrum.core
+package ru.lagarnikov.hapidrum.core.fairbase_storage
 
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import ru.lagarnikov.hapidrum.model.InstrumentSound
 import java.io.File
 
-class FairbaseStorageBase() : IFairbaseStorageBase {
+class FairbaseStorageBase() :
+    IFairbaseStorageBase {
     private val SLASH = "/"
 
 
@@ -15,14 +14,14 @@ class FairbaseStorageBase() : IFairbaseStorageBase {
         instrumentSound: InstrumentSound,
         file: File,
         storage: FirebaseStorage
-    ): Deferred<FileDownloadTask> {
+    ): FileDownloadTask {
         val storageRef = storage.reference.child(
             createRefString(
                 instrumentSound.instrumentName,
                 instrumentSound.soundName
             )
         )
-        return GlobalScope.async { storageRef.getFile(file) }
+        return storageRef.getFile(file)
     }
 
     private fun createRefString(vararg path: String): String {

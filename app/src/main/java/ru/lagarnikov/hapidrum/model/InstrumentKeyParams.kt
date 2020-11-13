@@ -1,8 +1,8 @@
-package ru.lagarnikov.hapidrum.core
+package ru.lagarnikov.hapidrum.model
 
 import android.widget.Button
 import android.widget.ImageView
-import ru.lagarnikov.hapidrum.soundlayer.KeyValues
+import ru.lagarnikov.hapidrum.core.soundlayer.KeyValues
 
 data class InstrumentKeyParams(
     val keyParams: KeyValues,

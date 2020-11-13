@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">HapiDrum</string>
     <string name="stop_all">Заглушить</string>
+    <string name="has_not_permission">Работа программы без данного разрешения невозможна - необходимо скачать звуки инструментов.</string>
 </resources>

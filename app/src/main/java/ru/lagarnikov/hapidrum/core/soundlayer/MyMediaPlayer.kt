@@ -2,7 +2,7 @@ package ru.lagarnikov.hapidrum
 
 import android.content.Context
 import android.media.MediaPlayer
-import ru.lagarnikov.hapidrum.repositoriy.AudioRepositoriy
+import ru.lagarnikov.hapidrum.core.fon_repositoriy.AudioRepositoriy
 
 class MyMediaPlayer(val context: Context) {
     private val VOLUME = 0.05f

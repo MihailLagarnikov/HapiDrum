@@ -1,8 +1,8 @@
-package ru.lagarnikov.hapidrum.core
+package ru.lagarnikov.hapidrum.core.fairbase_storage
 
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.Deferred
+import ru.lagarnikov.hapidrum.model.InstrumentSound
 import java.io.File
 
 interface IFairbaseStorageBase {
@@ -11,5 +11,5 @@ interface IFairbaseStorageBase {
         instrumentSound: InstrumentSound,
         file: File,
         storage: FirebaseStorage
-    ): Deferred<FileDownloadTask>
+    ): FileDownloadTask
 }

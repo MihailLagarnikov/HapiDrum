@@ -1,11 +1,12 @@
-package ru.lagarnikov.hapidrum.soundlayer
+package ru.lagarnikov.hapidrum.core.soundlayer
 
 import android.content.Context
 import android.media.SoundPool
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import ru.lagarnikov.hapidrum.core.InstrumentKeyParams
-import ru.lagarnikov.hapidrum.ui.AnimTouch
+import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
+import ru.lagarnikov.hapidrum.core.AnimTouch
 import java.util.*
 import kotlin.collections.ArrayList
 
