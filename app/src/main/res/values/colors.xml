@@ -4,4 +4,12 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colortrancparent">#00FFFFFF</color>
+
+    <color name="super_black">#333333</color>
+    <color name="medium_black">#4D4D4D</color>
+    <color name="light_black">#6C6C6C</color>
+    <color name="super_white">#FFFFFF</color>
+    <color name="primary_green">#37DAA5</color>
+    <color name="secondary_yellow">#F5E238</color>
+    <color name="primary_blue">#4795FE</color>
 </resources>

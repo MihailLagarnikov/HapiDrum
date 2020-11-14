@@ -3,8 +3,10 @@ package ru.lagarnikov.hapidrum.core.base_fragment
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
+import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -27,7 +29,6 @@ abstract class BaseInstrumentFragment : Fragment(),
 
     abstract fun getLayout(): Int
     abstract fun getInstrumentName(): String
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +41,7 @@ abstract class BaseInstrumentFragment : Fragment(),
         super.onViewCreated(view, savedInstanceState)
         createProgressObserver()
         createLoadSoundObserver()
+        createShopOpenBlock()
     }
 
     private fun createProgressObserver() {
@@ -71,6 +73,12 @@ abstract class BaseInstrumentFragment : Fragment(),
         } else {
             mainFragmentViewModel.currentInstrumentKeyParamsList.value = getInstrumentParams()
         }
+    }
+
+    private fun createShopOpenBlock(){
+        val motionLayout = view?.findViewById<MotionLayout>(R.id.motion_instrument)
+        val openShop = view?.findViewById<TextureView>(R.id.link_shop_name)
+        openShop?.setOnClickListener { motionLayout?.transitionToEnd() }
     }
 
     override fun isLoaded() = soundLoaderUseCase.isInstrumentSoundLoaded(getInstrumentName())

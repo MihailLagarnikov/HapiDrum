@@ -3,4 +3,11 @@
     <string name="app_name">HapiDrum</string>
     <string name="stop_all">Заглушить</string>
     <string name="has_not_permission">Работа программы без данного разрешения невозможна - необходимо скачать звуки инструментов.</string>
+
+    //store content
+    <string name="shop_title">Магазин:</string>
+    <string name="diameter_title">Диаметр:</string>
+    <string name="weight_title">Вес:</string>
+    <string name="sound_title">Звучание:</string>
+    <string name="shop_button">Перейти в магазин</string>
 </resources>

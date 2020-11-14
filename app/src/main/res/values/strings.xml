@@ -2,4 +2,11 @@
     <string name="app_name">HapiDrum</string>
     <string name="stop_all">Stop all</string>
     <string name="has_not_permission">The program cannot work without this permission - you need to download the sounds of the instruments.</string>
+
+    //store content
+    <string name="shop_title">Store:</string>
+    <string name="diameter_title">Diameter:</string>
+    <string name="weight_title">Weight:</string>
+    <string name="sound_title">Sound:</string>
+    <string name="shop_button">Go to store</string>
 </resources>
