@@ -2,6 +2,7 @@
     <string name="app_name">HapiDrum</string>
     <string name="stop_all">Stop all</string>
     <string name="has_not_permission">The program cannot work without this permission - you need to download the sounds of the instruments.</string>
+    <string name="close">Close</string>
 
     //store content
     <string name="shop_title">Store:</string>
@@ -9,4 +10,14 @@
     <string name="weight_title">Weight:</string>
     <string name="sound_title">Sound:</string>
     <string name="shop_button">Go to store</string>
+
+    //Shops
+    <string name="shop_kosmosky" translatable="false">KOSMOSKY</string>
+    <string name="url_kosmosky" translatable="false">https://translate.google.com/</string>
+
+    //main_insrumaent
+    <string name="instrument_main">Mountain river</string>
+    <string name="diameter_main">35 cm</string>
+    <string name="weight_main">5.5 kg</string>
+    <string name="sound_main">La Minor</string>
 </resources>

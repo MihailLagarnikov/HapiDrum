@@ -7,6 +7,8 @@ import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_
 import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_SOUNDS_
 import ru.lagarnikov.hapidrum.core.soundlayer.KeyValues
+import ru.lagarnikov.hapidrum.model.AditionalInstrumentInfo
+import ru.lagarnikov.hapidrum.model.InstrumentAboutData
 
 class MainInstrument : BaseInstrumentFragment() {
 
@@ -70,6 +72,26 @@ class MainInstrument : BaseInstrumentFragment() {
                 hapi_drum_zero,
                 getFilePath(MAIN_SOUNDS_.get(8).fileLocalName, MAIN_SOUNDS_.get(8).fileExtension)
             )
+        )
+    }
+
+    override fun getInstrumentAboutData(): InstrumentAboutData {
+        val listAdditional = arrayListOf<AditionalInstrumentInfo>(
+            AditionalInstrumentInfo(
+                getString(R.string.diameter_title),
+                getString(R.string.diameter_main)
+            ),
+            AditionalInstrumentInfo(
+                getString(R.string.weight_title),
+                getString(R.string.weight_main)
+            ),
+            AditionalInstrumentInfo(getString(R.string.sound_title), getString(R.string.sound_main))
+        )
+        return InstrumentAboutData(
+            getString(R.string.instrument_main),
+            getString(R.string.shop_kosmosky),
+            getString(R.string.url_kosmosky),
+            listAdditional
         )
     }
 }

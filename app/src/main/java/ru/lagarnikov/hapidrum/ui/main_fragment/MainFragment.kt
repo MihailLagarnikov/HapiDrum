@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.twosmalpixels.travel_notes.core.extension.setVisibility
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_instrument_fragment.*
 import ru.lagarnikov.hapidrum.MyMediaPlayer
@@ -39,8 +40,8 @@ class MainFragment : Fragment() {
         loopPlayer = LoopPlayer(requireContext())
         loadMusicFon()
         /*loadRandomgenerator()*/
-
         createInstrumentChangeObserver()
+        createVisiblNavButtonObserver()
     }
 
     private fun createInstrumentChangeObserver() {
@@ -48,6 +49,13 @@ class MainFragment : Fragment() {
             if (mainFragmentViewModel.isCurrentInstrumentLoaded) {
                 loadSamples(it)
             }
+        })
+    }
+
+    private fun createVisiblNavButtonObserver(){
+        mainFragmentViewModel.visibilityNavigButton.observe(this, Observer {
+            btn_right_instrument.setVisibility(it)
+            btn_left_instrument.setVisibility(it)
         })
     }
 
