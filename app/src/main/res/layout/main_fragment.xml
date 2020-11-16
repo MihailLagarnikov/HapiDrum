@@ -8,6 +8,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <include layout="@layout/top_sheet_panel"/>
+
     <ImageView
         android:id="@+id/fon_image"
         android:scaleType="fitXY"

@@ -9,10 +9,13 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_instrument_fragment.*
+import kotlinx.android.synthetic.main.top_sheet_panel.*
 import ru.lagarnikov.hapidrum.MyMediaPlayer
 import ru.lagarnikov.hapidrum.R
+import ru.lagarnikov.hapidrum.TopSheetBehavior
 import ru.lagarnikov.hapidrum.core.RandomPlayer
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.soundlayer.LoopPlayer
@@ -42,6 +45,19 @@ class MainFragment : Fragment() {
         /*loadRandomgenerator()*/
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()
+        createTopPanel()
+    }
+
+    private fun createTopPanel(){
+        val topSheetBehavior = TopSheetBehavior.from(top_sheet_layout)
+        topSheetBehavior.peekHeight = resources.getDimension(R.dimen.behavior_peek_height).toInt()
+        peekContainer.setOnClickListener {
+            if (topSheetBehavior.state != TopSheetBehavior.STATE_EXPANDED) {
+                topSheetBehavior.state = TopSheetBehavior.STATE_EXPANDED
+            } else {
+                topSheetBehavior.state = TopSheetBehavior.STATE_COLLAPSED
+            }
+        }
     }
 
     private fun createInstrumentChangeObserver() {
