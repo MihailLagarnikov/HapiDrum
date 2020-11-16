@@ -2,12 +2,15 @@ package ru.lagarnikov.hapidrum.core.base_fragment
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
@@ -141,6 +144,13 @@ abstract class BaseInstrumentFragment : Fragment(),
                 }
                 i++
             }
+        }
+        val buttonShop = view?.findViewById<Button>(R.id.button_shop)
+        buttonShop?.setVisibility(info.urlShop.isNotEmpty())
+        buttonShop?.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.setData(Uri.parse(info.urlShop))
+            startActivity(intent)
         }
 
     }

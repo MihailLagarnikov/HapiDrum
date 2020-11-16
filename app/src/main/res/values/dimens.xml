@@ -7,4 +7,7 @@
     <dimen name="weight_smal_sound_button">90dp</dimen>
     <dimen name="button_elevation">8dp</dimen>
     <dimen name="anim_elevation">3dp</dimen>
+
+    <dimen name="padding_navigation_out">56dp</dimen>
+    <dimen name="padding_navigation_normal">16dp</dimen>
 </resources>

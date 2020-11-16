@@ -1,5 +1,6 @@
 package ru.lagarnikov.hapidrum.ui.main_fragment
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.twosmalpixels.travel_notes.core.extension.setVisibility
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_instrument_fragment.*
 import ru.lagarnikov.hapidrum.MyMediaPlayer
@@ -52,11 +52,26 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun createVisiblNavButtonObserver(){
+    private fun createVisiblNavButtonObserver() {
+        val TRANSLATE_LEFT_NORMAL = resources.getDimension(R.dimen.padding_navigation_normal)
+        val TRANSLATE_LEFT_OUT = -resources.getDimension(R.dimen.padding_navigation_out)
+        val TRANSLATE_RIGHT_NORMAL = -resources.getDimension(R.dimen.padding_navigation_normal)
+        val TRANSLATE_RIGHT_OUT = resources.getDimension(R.dimen.padding_navigation_out)
         mainFragmentViewModel.visibilityNavigButton.observe(this, Observer {
-            btn_right_instrument.setVisibility(it)
-            btn_left_instrument.setVisibility(it)
+            translater(btn_left_instrument, if (it) TRANSLATE_LEFT_NORMAL else TRANSLATE_LEFT_OUT)
+            translater(
+                btn_right_instrument,
+                if (it) TRANSLATE_RIGHT_NORMAL else TRANSLATE_RIGHT_OUT
+            )
         })
+    }
+
+    private fun translater(view: View, value: Float) {
+        val animator = ObjectAnimator.ofFloat(view, View.TRANSLATION_X, value)
+        animator.repeatCount = 0
+        animator.duration = resources.getInteger(R.integer.anim_duration_small).toLong()
+        animator.repeatMode = ObjectAnimator.RESTART
+        animator.start()
     }
 
     private fun loadMusicFon() {
