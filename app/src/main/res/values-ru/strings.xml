@@ -18,4 +18,6 @@
     <string name="weight_main">5.5 кг</string>
     <string name="sound_main">Ля-Минор</string>
 
+    //top panel
+    <string name="random">Рандом</string>
 </resources>

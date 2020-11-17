@@ -20,4 +20,7 @@
     <string name="diameter_main">35 cm</string>
     <string name="weight_main">5.5 kg</string>
     <string name="sound_main">La Minor</string>
+
+    //top panel
+    <string name="random">Random</string>
 </resources>
