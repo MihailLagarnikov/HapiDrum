@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -24,6 +25,7 @@ class MainFragment : Fragment() {
     private val fonHolder = FonHolder()
     private lateinit var loopPlayer: LoopPlayer
     private lateinit var mainFragmentViewModel: MainFragmentViewModel
+    private var isTopPanelHide = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +45,7 @@ class MainFragment : Fragment() {
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()
         createTopPanel()
+        initTopPanel()
     }
 
     private fun createTopPanel(){
@@ -114,6 +117,50 @@ class MainFragment : Fragment() {
             image_random.setImageDrawable(
                 resources.getDrawable(if (randomGenerator.pressGenerator()) R.drawable.auto_pressed else R.drawable.auto)
             )
+        }
+    }
+
+    private fun initTopPanel() {
+        hide_show_top_panel_button.setOnClickListener {
+            if (isTopPanelHide) {
+                motion_layout_top_panel.transitionToEnd()
+            } else {
+                motion_layout_top_panel.transitionToStart()
+            }
+        }
+        motion_layout_top_panel.addTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionTrigger(
+                p0: MotionLayout?,
+                p1: Int,
+                p2: Boolean,
+                p3: Float
+            ) {
+            }
+
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+            }
+
+            override fun onTransitionChange(
+                p0: MotionLayout?,
+                p1: Int,
+                p2: Int,
+                p3: Float
+            ) {
+            }
+
+            override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+                isTopPanelHide = p1 == R.id.start
+                hide_show_top_panel_button.setImageResource(getTopPanelButtonImage(isTopPanelHide))
+
+            }
+        })
+    }
+
+    private fun getTopPanelButtonImage(isTop: Boolean): Int {
+        return if (isTop) {
+            R.drawable.ic_top_panel_to_down
+        } else {
+            R.drawable.ic_top_panel_to_top
         }
     }
 }

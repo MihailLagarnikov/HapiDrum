@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/motion_operation">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="@integer/anim_duration_small">
+
+        <OnSwipe motion:dragDirection="dragDown"
+            motion:onTouchUp="autoComplete"/>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            android:id="@+id/random_card"
+            android:layout_width="@dimen/padding_navigation_out"
+            android:layout_height="@dimen/padding_navigation_out"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toTopOf="@+id/fon_img_card"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <Constraint
+            android:id="@+id/fon_musick_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/padding_navigation_out"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/random_card"
+            motion:layout_constraintBottom_toTopOf="@+id/day_night_card"/>
+
+        <Constraint
+            android:id="@+id/fon_img_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/padding_navigation_out"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="4dp"
+            motion:layout_constraintEnd_toStartOf="@+id/day_night_card"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/day_night_card"
+            android:layout_width="@dimen/padding_navigation_out"
+            android:layout_height="@dimen/padding_navigation_out"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintBottom_toTopOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"/>
+
+        <Constraint
+            android:id="@+id/hide_show_top_panel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+    </ConstraintSet>
+
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/random_card"
+            android:layout_width="@dimen/padding_navigation_out"
+            android:layout_height="@dimen/padding_navigation_out"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"/>
+
+        <Constraint
+            android:id="@+id/fon_musick_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/padding_navigation_out"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@+id/random_card"
+            motion:layout_constraintTop_toTopOf="parent"/>
+
+        <Constraint
+            android:id="@+id/fon_img_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/padding_navigation_out"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            motion:layout_constraintEnd_toStartOf="@+id/day_night_card"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/random_card"/>
+
+        <Constraint
+            android:id="@+id/day_night_card"
+            android:layout_width="@dimen/padding_navigation_out"
+            android:layout_height="@dimen/padding_navigation_out"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/random_card"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="4dp"/>
+
+        <Constraint
+            android:id="@+id/hide_show_top_panel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/fon_img_card" />
+
+    </ConstraintSet>
+
+</MotionScene>

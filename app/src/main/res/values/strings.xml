@@ -23,4 +23,10 @@
 
     //top panel
     <string name="random">Random</string>
+    <string name="onn">On</string>
+    <string name="off">Off</string>
+    <string name="fon_musick">Background music</string>
+    <string name="fon_img">Background picture</string>
+    <string name="day">Day</string>
+    <string name="night">Night</string>
 </resources>

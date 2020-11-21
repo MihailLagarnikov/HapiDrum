@@ -20,4 +20,10 @@
 
     //top panel
     <string name="random">Рандом</string>
+    <string name="onn">Вкл.</string>
+    <string name="off">Выкл.</string>
+    <string name="fon_musick">Фоновая музыка</string>
+    <string name="fon_img">Фоновая картинка</string>
+    <string name="day">День</string>
+    <string name="night">Ночь</string>
 </resources>

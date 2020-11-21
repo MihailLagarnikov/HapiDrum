@@ -23,6 +23,8 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/motion_layout_top_panel"
         android:layout_width="match_parent"
+        app:layoutDescription="@xml/top_panel_scene"
+        android:elevation="1dp"
         android:layout_height="@dimen/top_panel_height">
 
         <androidx.cardview.widget.CardView
@@ -39,7 +41,7 @@
                 android:id="@+id/random_constr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/light_black">
+                android:background="@color/super_black">
 
                 <ImageView
                     android:id="@+id/random_img"
@@ -68,7 +70,248 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fon_musick_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/padding_navigation_out"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/random_card"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fon_musick_constr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/super_black">
+
+                <ImageView
+                    android:id="@+id/fon_musick_on_img"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_fon_musick"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fon_musick_on_text"
+                    style="@style/Text_super_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/off"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/fon_musick_on_img"
+                    app:layout_constraintStart_toStartOf="@+id/fon_musick_on_img"
+                    app:layout_constraintTop_toBottomOf="@+id/fon_musick_on_img" />
+
+                <TextView
+                    android:id="@+id/fon_musick_title_text"
+                    style="@style/Text_super_small"
+                    android:textColor="@color/light_black"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/fon_musick"
+                    app:layout_constraintEnd_toStartOf="@+id/fon_musick_left_button"
+                    app:layout_constraintStart_toEndOf="@+id/fon_musick_on_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fon_musick_trak_text"
+                    style="@style/Text_super_small"
+                    android:textColor="@color/light_black"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    app:layout_constraintEnd_toStartOf="@+id/fon_musick_left_button"
+                    app:layout_constraintStart_toStartOf="@+id/fon_musick_title_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fon_musick_title_text"
+                    tools:layout_editor_absoluteY="29dp" />
+
+                <ImageView
+                    android:id="@+id/fon_musick_left_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:rotation="180"
+                    android:src="@drawable/ic_arrow_right_panel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fon_musick_right_button"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <ImageView
+                    android:id="@+id/fon_musick_right_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_right_panel"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fon_img_card"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/padding_navigation_out"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/day_night_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/random_card">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fon_img_constr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/super_black">
+
+                <ImageView
+                    android:id="@+id/fon_img_on_img"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_fon_img_panel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fon_img_on_text"
+                    style="@style/Text_super_small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center"
+                    android:text="@string/off"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/fon_img_on_img"
+                    app:layout_constraintStart_toStartOf="@+id/fon_img_on_img"
+                    app:layout_constraintTop_toBottomOf="@+id/fon_img_on_img" />
+
+                <TextView
+                    android:id="@+id/fon_img_title_text"
+                    style="@style/Text_super_small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/fon_img"
+                    android:textColor="@color/light_black"
+                    app:layout_constraintEnd_toStartOf="@+id/fon_img_left_button"
+                    app:layout_constraintStart_toEndOf="@+id/fon_img_on_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fon_img_trak_text"
+                    style="@style/Text_super_small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="@color/light_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fon_img_left_button"
+                    app:layout_constraintStart_toStartOf="@+id/fon_img_title_text"
+                    app:layout_constraintTop_toBottomOf="@+id/fon_img_title_text"
+                    tools:layout_editor_absoluteY="29dp" />
+
+                <ImageView
+                    android:id="@+id/fon_img_left_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:rotation="180"
+                    android:src="@drawable/ic_arrow_right_panel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fon_img_right_button"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/fon_img_right_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_arrow_right_panel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/day_night_card"
+            android:layout_width="@dimen/padding_navigation_out"
+            android:layout_height="@dimen/padding_navigation_out"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/random_card"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/day_night_constr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/super_black">
+
+                <ImageView
+                    android:id="@+id/day_night_img"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_day"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/day_night_text"
+                    style="@style/Text_super_small"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/day"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/hide_show_top_panel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fon_img_card"
+            app:srcCompat="@drawable/ic_top_panel_to_down" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 
@@ -76,6 +319,8 @@
         android:id="@+id/instrument_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:layout_width="1dp"
+        tools:layout_height="1dp"
         app:navGraph="@navigation/instrument_nav_graph"
         android:name="androidx.navigation.fragment.NavHostFragment" />
 
