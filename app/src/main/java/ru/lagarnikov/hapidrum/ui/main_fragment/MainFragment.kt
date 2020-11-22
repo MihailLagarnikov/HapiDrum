@@ -5,27 +5,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.twosmalpixels.travel_notes.core.extension.setDisabled
+import com.twosmalpixels.travel_notes.core.extension.setPress
+import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.ISharedPrefHelper
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_instrument_fragment.*
+import org.koin.java.standalone.KoinJavaComponent
 import ru.lagarnikov.hapidrum.MyMediaPlayer
 import ru.lagarnikov.hapidrum.R
-import ru.lagarnikov.hapidrum.core.RandomPlayer
+import ru.lagarnikov.hapidrum.core.RandomGenerator
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.soundlayer.LoopPlayer
 import ru.lagarnikov.hapidrum.core.fon_repositoriy.FonHolder
+import ru.lagarnikov.hapidrum.core.sound_loader.SoundFons
 
 
 class MainFragment : Fragment() {
 
+    private val sharedPref: ISharedPrefHelper by KoinJavaComponent.inject(ISharedPrefHelper::class.java)
     private val fonHolder = FonHolder()
     private lateinit var loopPlayer: LoopPlayer
+    private lateinit var fonPlayer: MyMediaPlayer
     private lateinit var mainFragmentViewModel: MainFragmentViewModel
+    private var randomGenerator: RandomGenerator? = null
     private var isTopPanelHide = true
+    private var isRandomOn = false
+    private var isFonOn = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,15 +49,14 @@ class MainFragment : Fragment() {
         mainFragmentViewModel =
             ViewModelProviders.of(requireActivity()).get(MainFragmentViewModel::class.java)
         loopPlayer = LoopPlayer(requireContext())
-        loadMusicFon()
-        /*loadRandomgenerator()*/
+        fonPlayer = MyMediaPlayer(requireContext())
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()
         createTopPanel()
         initTopPanel()
     }
 
-    private fun createTopPanel(){
+    private fun createTopPanel() {
 
     }
 
@@ -56,6 +64,7 @@ class MainFragment : Fragment() {
         mainFragmentViewModel.currentInstrumentKeyParamsList.observe(this, Observer {
             if (mainFragmentViewModel.isCurrentInstrumentLoaded) {
                 loadSamples(it)
+                loadRandomGenerator(it)
             }
         })
     }
@@ -82,15 +91,6 @@ class MainFragment : Fragment() {
         animator.start()
     }
 
-    private fun loadMusicFon() {
-        image_music_fon.setOnClickListener {
-            (it as ImageView)
-                .setImageResource(
-                    if (MyMediaPlayer(requireContext()).startMusick()) R.drawable.btn_music_fon
-                    else R.drawable.btn_music_fon_off
-                )
-        }
-    }
 
     private fun loadSamples(instrumentKeyParamsList: ArrayList<InstrumentKeyParams>) {
         for (params in instrumentKeyParamsList) {
@@ -101,23 +101,11 @@ class MainFragment : Fragment() {
         image_fon.setOnClickListener { fonHolder.setFonFor(fon_image) }
     }
 
-    private fun loadRandomgenerator() {
-        val randomGenerator = RandomPlayer(
+    private fun loadRandomGenerator(instrumentKeyParamsList: ArrayList<InstrumentKeyParams>) {
+        randomGenerator = RandomGenerator(
             loopPlayer,
-            button_a,
-            button_b,
-            button_c,
-            button_d,
-            button_e,
-            button_f,
-            button_g,
-            button_h, button_zero
+            instrumentKeyParamsList
         )
-        image_random.setOnClickListener {
-            image_random.setImageDrawable(
-                resources.getDrawable(if (randomGenerator.pressGenerator()) R.drawable.auto_pressed else R.drawable.auto)
-            )
-        }
     }
 
     private fun initTopPanel() {
@@ -154,7 +142,53 @@ class MainFragment : Fragment() {
 
             }
         })
+
+        random_constr.setOnClickListener {
+            isRandomOn = !isRandomOn
+            randomGenerator?.press(isRandomOn)
+            random_img.setPress(isRandomOn)
+            random_text.setPress(isRandomOn)
+        }
+        random_img.setPress(isRandomOn)
+        random_text.setPress(isRandomOn)
+
+        fon_musick_constr.setOnClickListener { clickFinMusic() }
+
+        fon_musick_right_button.setOnClickListener {
+            if (isFonOn) {
+                fonPlayer.nextTrack()
+                fon_musick_trak_text.setText(fonPlayer.getTrackName())
+            }
+        }
+        fon_musick_left_button.setOnClickListener {
+            if (isFonOn) {
+                fonPlayer.previusTrack()
+                fon_musick_trak_text.setText(fonPlayer.getTrackName())
+            }
+        }
+        fon_musick_on_img.setPress(isFonOn)
+        fon_musick_on_text.setPress(isFonOn)
+        fon_musick_trak_text.setDisabled(!isFonOn)
+        fon_musick_title_text.setDisabled(!isFonOn)
+        fon_musick_right_button.setDisabled(!isFonOn)
+        fon_musick_left_button.setDisabled(!isFonOn)
     }
+
+    private fun clickFinMusic() {
+        if (sharedPref.loadBoolean(SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
+            isFonOn = fonPlayer.pressFon()
+            fon_musick_on_img.setPress(isFonOn)
+            fon_musick_on_text.setPress(isFonOn)
+            fon_musick_trak_text.setDisabled(!isFonOn)
+            fon_musick_title_text.setDisabled(!isFonOn)
+            fon_musick_right_button.setDisabled(!isFonOn)
+            fon_musick_left_button.setDisabled(!isFonOn)
+            fon_musick_trak_text.setText(fonPlayer.getTrackName())
+        } else {
+            fon_musick_trak_text.setText(R.string.fon_music_loading)
+        }
+    }
+
 
     private fun getTopPanelButtonImage(isTop: Boolean): Int {
         return if (isTop) {
@@ -162,5 +196,14 @@ class MainFragment : Fragment() {
         } else {
             R.drawable.ic_top_panel_to_top
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        fonPlayer.stopMusic()
+        isFonOn = false
+
+        isRandomOn = false
+        randomGenerator?.press(isRandomOn)
     }
 }

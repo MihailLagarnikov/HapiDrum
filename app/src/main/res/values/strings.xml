@@ -29,4 +29,5 @@
     <string name="fon_img">Background picture</string>
     <string name="day">Day</string>
     <string name="night">Night</string>
+    <string name="fon_music_loading">Tracks are loading …</string>
 </resources>

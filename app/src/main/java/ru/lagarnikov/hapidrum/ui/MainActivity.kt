@@ -20,6 +20,7 @@ import org.koin.java.standalone.KoinJavaComponent
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.sound_loader.ISoundLoaderUseCase
 import ru.lagarnikov.hapidrum.core.sound_loader.Instruments
+import ru.lagarnikov.hapidrum.core.sound_loader.SoundFons
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +51,23 @@ class MainActivity : AppCompatActivity() {
                 if (!soundLoaderUseCase.isInstrumentSoundLoaded(instrument.name)) {
                     val job = GlobalScope.async{
                         soundLoaderUseCase.loadSounds(instrument,  storage)
+                    }
+                    job.await()
+                    soundLoaderUseCase.isLoaded.value = true
+                }
+            }
+        }
+        loadFonMusick()
+    }
+
+    private fun loadFonMusick() {
+        for (soundFon in SoundFons.values()) {
+            if (sharedPref.loadBoolean(soundFon.sounds.get(0).instrumentName, false)) continue
+            soundLoaderUseCase.isLoaded.value = false
+            GlobalScope.launch(Dispatchers.Main){
+                if (!soundLoaderUseCase.isInstrumentSoundLoaded(soundFon.name)) {
+                    val job = GlobalScope.async{
+                        soundLoaderUseCase.loadSounds(soundFon,  storage)
                     }
                     job.await()
                     soundLoaderUseCase.isLoaded.value = true

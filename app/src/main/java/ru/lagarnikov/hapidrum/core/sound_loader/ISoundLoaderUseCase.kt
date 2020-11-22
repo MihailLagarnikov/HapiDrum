@@ -6,6 +6,7 @@ import com.google.firebase.storage.FirebaseStorage
 interface ISoundLoaderUseCase {
     val isLoaded: MutableLiveData<Boolean>
     suspend fun loadSounds(insrtument: Instruments, storage: FirebaseStorage)
+    suspend fun loadSounds(soundFon: SoundFons, storage: FirebaseStorage)
     fun isInstrumentSoundLoaded(insrtumentName: String): Boolean
     fun getLoadingInstrumentName(): String
 }

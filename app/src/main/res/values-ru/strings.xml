@@ -26,4 +26,5 @@
     <string name="fon_img">Фоновая картинка</string>
     <string name="day">День</string>
     <string name="night">Ночь</string>
+    <string name="fon_music_loading">Треки загружаются…</string>
 </resources>

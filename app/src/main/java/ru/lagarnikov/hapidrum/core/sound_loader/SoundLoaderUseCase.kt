@@ -50,4 +50,19 @@ class SoundLoaderUseCase(
     }
 
     override fun getLoadingInstrumentName() = currentInstrument
+
+    override suspend fun loadSounds(soundFon: SoundFons, storage: FirebaseStorage) {
+        currentInstrument = soundFon.sounds.get(0).instrumentName
+        var listState = soundFon.sounds.size
+        for (instrumentSound in soundFon.sounds) {
+            startLoad(instrumentSound, storage).addOnSuccessListener {
+                listState--
+            }.addOnFailureListener {
+            }
+        }
+        while (listState != 0) {
+            Thread.sleep(PAUSE_TIME)
+        }
+        sharedPrefHelper.saveBoolean(soundFon.sounds.get(0).instrumentName, true)
+    }
 }
