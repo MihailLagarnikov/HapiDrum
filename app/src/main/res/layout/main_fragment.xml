@@ -12,7 +12,7 @@
         android:id="@+id/fon_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/sand_a"
+        android:background="@drawable/ic_start_fon"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -323,24 +323,6 @@
         tools:layout_height="1dp"
         app:navGraph="@navigation/instrument_nav_graph"
         android:name="androidx.navigation.fragment.NavHostFragment" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:visibility="gone">
-
-        <ImageView
-            android:id="@+id/image_fon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/btn_fon" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/btn_left_instrument"

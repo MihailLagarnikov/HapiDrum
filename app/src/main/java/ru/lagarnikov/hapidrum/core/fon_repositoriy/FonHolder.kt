@@ -5,32 +5,63 @@ import com.bumptech.glide.Glide
 import ru.lagarnikov.hapidrum.R
 
 class FonHolder {
-    val listFon = setFonList()
-    private var position = -1
 
-    fun setFonFor(view: ImageView){
+    private val START_POSITION = -1
+    val listFon = Fons.values()
+    private var position = START_POSITION
+    private var isPress = false
+
+    fun pressFonImage(view: ImageView): Boolean {
+        isPress = !isPress
+        if (isPress) {
+            setFonFor(view)
+        } else {
+            removeFonFor(view)
+        }
+        return isPress
+    }
+
+    fun nextTrack(view: ImageView) {
+        position++
+        if (position >= listFon.size) {
+            position = 0
+        }
+        setFonFor(view)
+    }
+
+    fun previusTrack(view: ImageView) {
+        position--
+        if (position < 0) {
+            position = listFon.size - 1
+        }
+        setFonFor(view)
+    }
+
+    private fun setFonFor(view: ImageView) {
         Glide.with(view).load(getDrawableFon()).into(view)
     }
 
-    private fun setFonList(): ArrayList<Int>{
-        val list = ArrayList<Int>()
-        list.add(R.drawable.fon_2)
-        list.add(R.drawable.fon_3)
-        list.add(R.drawable.fon_4)
-        list.add(R.drawable.fon_5)
-        list.add(R.drawable.sand_a)
-        list.add(R.drawable.wood_pil)
-        list.add(R.drawable.gray_sand)
-        return  list
-
+    private fun removeFonFor(view: ImageView) {
+        Glide.with(view).load(R.drawable.ic_start_fon).into(view)
+        position = START_POSITION
     }
 
-    private fun getDrawableFon(): Int{
+    fun getFonName(isDay: Boolean): Int {
+        return if (position == START_POSITION) {
+            R.string.nothing
+        } else if (isDay) {
+            listFon.get(position).param.nameDay
+        } else {
+            listFon.get(position).param.nameNight
+        }
+    }
+
+
+    private fun getDrawableFon(): Int {
         position++
-        if (position >= listFon.size){
+        if (position >= listFon.size) {
             position = 0
         }
-        return listFon.get(position)
+        return listFon.get(position).param.drawable
     }
-
 }

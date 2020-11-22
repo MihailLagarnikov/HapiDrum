@@ -12,5 +12,8 @@
     <color name="white">#FFFFFF</color>
     <color name="white_disabled">#80FFFFFF</color>
     <color name="primary_green">#37DAA5</color>
+
+    //day_night
     <color name="pressed_color">#F5E238</color>
+    <color name="start_fon_color">#FFFFFF</color>
 </resources>

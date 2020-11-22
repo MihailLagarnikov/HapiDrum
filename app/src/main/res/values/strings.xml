@@ -30,4 +30,9 @@
     <string name="day">Day</string>
     <string name="night">Night</string>
     <string name="fon_music_loading">Tracks are loading …</string>
+    <string name="nothing" translatable="false">-</string>
+
+    //fon image names
+    <string name="fon_a_day" translatable="false">marble</string>
+    <string name="fon_a_night" translatable="false">Sky Blue</string>
 </resources>

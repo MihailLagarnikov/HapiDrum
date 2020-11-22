@@ -35,6 +35,7 @@ class MainFragment : Fragment() {
     private var isTopPanelHide = true
     private var isRandomOn = false
     private var isFonOn = false
+    private var isFonImageOn = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,9 +97,7 @@ class MainFragment : Fragment() {
         for (params in instrumentKeyParamsList) {
             loopPlayer.setInstrumentParamsKey(params)
         }
-
         stop_all.setOnClickListener { loopPlayer.stopAllSounds() }
-        image_fon.setOnClickListener { fonHolder.setFonFor(fon_image) }
     }
 
     private fun loadRandomGenerator(instrumentKeyParamsList: ArrayList<InstrumentKeyParams>) {
@@ -166,6 +165,38 @@ class MainFragment : Fragment() {
                 fon_musick_trak_text.setText(fonPlayer.getTrackName())
             }
         }
+        setFonMusickViewsParam()
+
+        fon_img_constr.setOnClickListener {
+            isFonImageOn = fonHolder.pressFonImage(fon_image)
+            setFonImageParam()
+        }
+        fon_img_right_button.setOnClickListener {
+            if (isFonImageOn) {
+                fonHolder.nextTrack(fon_image)
+                fon_img_trak_text.setText(fonHolder.getFonName(mainFragmentViewModel.isDay))
+            }
+        }
+        fon_img_left_button.setOnClickListener {
+            if (isFonImageOn) {
+                fonHolder.previusTrack(fon_image)
+                fon_img_trak_text.setText(fonHolder.getFonName(mainFragmentViewModel.isDay))
+            }
+        }
+        setFonImageParam()
+    }
+
+    private fun clickFinMusic() {
+        if (sharedPref.loadBoolean(SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
+            isFonOn = fonPlayer.pressFon()
+            setFonMusickViewsParam()
+            fon_musick_trak_text.setText(fonPlayer.getTrackName())
+        } else {
+            fon_musick_trak_text.setText(R.string.fon_music_loading)
+        }
+    }
+
+    private fun setFonMusickViewsParam() {
         fon_musick_on_img.setPress(isFonOn)
         fon_musick_on_text.setPress(isFonOn)
         fon_musick_trak_text.setDisabled(!isFonOn)
@@ -174,21 +205,15 @@ class MainFragment : Fragment() {
         fon_musick_left_button.setDisabled(!isFonOn)
     }
 
-    private fun clickFinMusic() {
-        if (sharedPref.loadBoolean(SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
-            isFonOn = fonPlayer.pressFon()
-            fon_musick_on_img.setPress(isFonOn)
-            fon_musick_on_text.setPress(isFonOn)
-            fon_musick_trak_text.setDisabled(!isFonOn)
-            fon_musick_title_text.setDisabled(!isFonOn)
-            fon_musick_right_button.setDisabled(!isFonOn)
-            fon_musick_left_button.setDisabled(!isFonOn)
-            fon_musick_trak_text.setText(fonPlayer.getTrackName())
-        } else {
-            fon_musick_trak_text.setText(R.string.fon_music_loading)
-        }
+    private fun setFonImageParam() {
+        fon_img_on_img.setPress(isFonImageOn)
+        fon_img_on_text.setPress(isFonImageOn)
+        fon_img_title_text.setDisabled(!isFonImageOn)
+        fon_img_trak_text.setDisabled(!isFonImageOn)
+        fon_img_left_button.setDisabled(!isFonImageOn)
+        fon_img_right_button.setDisabled(!isFonImageOn)
+        fon_img_trak_text.setText(fonHolder.getFonName(mainFragmentViewModel.isDay))
     }
-
 
     private fun getTopPanelButtonImage(isTop: Boolean): Int {
         return if (isTop) {
