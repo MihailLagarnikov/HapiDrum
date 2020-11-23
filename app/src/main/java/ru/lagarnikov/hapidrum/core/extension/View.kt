@@ -55,3 +55,12 @@ fun ImageView.setDisabled(isDisabled: Boolean) {
         this.setColorFilter(null)
     }
 }
+
+
+fun TextView.setDayNight(isNight: Boolean) {
+    if (isNight) {
+        this.setText(R.string.night)
+    } else {
+        this.setText(R.string.day)
+    }
+}

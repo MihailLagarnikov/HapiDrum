@@ -1,17 +1,19 @@
-package ru.lagarnikov.hapidrum.core.fon_repositoriy
+package ru.lagarnikov.hapidrum.core.fon_holder
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.IS_NIGHT_THEME
+import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.ISharedPrefHelper
 import ru.lagarnikov.hapidrum.R
 
-class FonHolder {
+class FonHolder(val sharedPrefHelper: ISharedPrefHelper) : IFonHolder {
 
     private val START_POSITION = -1
     val listFon = Fons.values()
     private var position = START_POSITION
     private var isPress = false
 
-    fun pressFonImage(view: ImageView): Boolean {
+    override fun pressFonImage(view: ImageView): Boolean {
         isPress = !isPress
         if (isPress) {
             setFonFor(view)
@@ -21,7 +23,7 @@ class FonHolder {
         return isPress
     }
 
-    fun nextTrack(view: ImageView) {
+    override fun nextTrack(view: ImageView) {
         position++
         if (position >= listFon.size) {
             position = 0
@@ -29,7 +31,7 @@ class FonHolder {
         setFonFor(view)
     }
 
-    fun previusTrack(view: ImageView) {
+    override fun previusTrack(view: ImageView) {
         position--
         if (position < 0) {
             position = listFon.size - 1
@@ -46,13 +48,13 @@ class FonHolder {
         position = START_POSITION
     }
 
-    fun getFonName(isDay: Boolean): Int {
+    override fun getFonName(): Int {
         return if (position == START_POSITION) {
             R.string.nothing
-        } else if (isDay) {
-            listFon.get(position).param.nameDay
-        } else {
+        } else if (sharedPrefHelper.loadBoolean(IS_NIGHT_THEME, false)) {
             listFon.get(position).param.nameNight
+        } else {
+            listFon.get(position).param.nameDay
         }
     }
 
@@ -62,6 +64,10 @@ class FonHolder {
         if (position >= listFon.size) {
             position = 0
         }
-        return listFon.get(position).param.drawable
+        return if (sharedPrefHelper.loadBoolean(IS_NIGHT_THEME, false)) {
+            listFon.get(position).param.drawableNight
+        } else {
+            listFon.get(position).param.drawableDay
+        }
     }
 }

@@ -41,7 +41,7 @@
                 android:id="@+id/random_constr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/super_black">
+                android:background="@color/panel_background">
 
                 <ImageView
                     android:id="@+id/random_img"
@@ -56,15 +56,15 @@
                 <TextView
                     android:id="@+id/random_text"
                     style="@style/Text_super_small"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/random"/>
+                    android:gravity="center"
+                    android:text="@string/random"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -86,7 +86,7 @@
                 android:id="@+id/fon_musick_constr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/super_black">
+                android:background="@color/panel_background">
 
                 <ImageView
                     android:id="@+id/fon_musick_on_img"
@@ -116,12 +116,12 @@
                 <TextView
                     android:id="@+id/fon_musick_title_text"
                     style="@style/Text_super_small"
-                    android:textColor="@color/light_black"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/fon_musick"
+                    android:textColor="@color/light_black"
                     app:layout_constraintEnd_toStartOf="@+id/fon_musick_left_button"
                     app:layout_constraintStart_toEndOf="@+id/fon_musick_on_img"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -129,13 +129,13 @@
                 <TextView
                     android:id="@+id/fon_musick_trak_text"
                     style="@style/Text_super_small"
-                    android:textColor="@color/light_black"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="-"
+                    android:textColor="@color/light_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/fon_musick_left_button"
                     app:layout_constraintStart_toStartOf="@+id/fon_musick_title_text"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fon_musick_title_text"
                     tools:layout_editor_absoluteY="29dp" />
 
@@ -155,11 +155,11 @@
                     android:id="@+id/fon_musick_right_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_arrow_right_panel"/>
+                    android:src="@drawable/ic_arrow_right_panel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -181,7 +181,7 @@
                 android:id="@+id/fon_img_constr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/super_black">
+                android:background="@color/panel_background">
 
                 <ImageView
                     android:id="@+id/fon_img_on_img"
@@ -273,14 +273,14 @@
                 android:id="@+id/day_night_constr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/super_black">
+                android:background="@color/panel_background">
 
                 <ImageView
                     android:id="@+id/day_night_img"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_day"
+                    android:src="@drawable/ic_icon_theme"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -288,15 +288,15 @@
                 <TextView
                     android:id="@+id/day_night_text"
                     style="@style/Text_super_small"
-                    android:gravity="center"
-                    android:textColor="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/day"/>
+                    android:gravity="center"
+                    android:text="@string/day"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -331,7 +331,7 @@
         android:layout_gravity="bottom|start"
         android:layout_marginBottom="34dp"
         android:layout_marginStart="@dimen/padding_navigation_normal"
-        android:src="@drawable/ic_arrow_main"/>
+        android:src="@drawable/button_circle_arrow"/>
 
     <ImageView
         android:id="@+id/btn_right_instrument"
@@ -341,6 +341,6 @@
         android:layout_marginBottom="34dp"
         android:layout_marginEnd="@dimen/padding_navigation_normal"
         android:rotation="180"
-        android:src="@drawable/ic_arrow_main"/>
+        android:src="@drawable/button_circle_arrow"/>
 
 </FrameLayout>

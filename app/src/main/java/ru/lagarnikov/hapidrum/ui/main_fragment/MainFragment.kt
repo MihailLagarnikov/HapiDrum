@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.twosmalpixels.travel_notes.core.extension.setDayNight
 import com.twosmalpixels.travel_notes.core.extension.setDisabled
 import com.twosmalpixels.travel_notes.core.extension.setPress
+import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.IS_NIGHT_THEME
 import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.ISharedPrefHelper
 import kotlinx.android.synthetic.main.main_fragment.*
 import kotlinx.android.synthetic.main.main_instrument_fragment.*
@@ -20,14 +23,14 @@ import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.RandomGenerator
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.soundlayer.LoopPlayer
-import ru.lagarnikov.hapidrum.core.fon_repositoriy.FonHolder
+import ru.lagarnikov.hapidrum.core.fon_holder.IFonHolder
 import ru.lagarnikov.hapidrum.core.sound_loader.SoundFons
 
 
 class MainFragment : Fragment() {
 
     private val sharedPref: ISharedPrefHelper by KoinJavaComponent.inject(ISharedPrefHelper::class.java)
-    private val fonHolder = FonHolder()
+    private val fonHolder: IFonHolder by KoinJavaComponent.inject(IFonHolder::class.java)
     private lateinit var loopPlayer: LoopPlayer
     private lateinit var fonPlayer: MyMediaPlayer
     private lateinit var mainFragmentViewModel: MainFragmentViewModel
@@ -36,6 +39,7 @@ class MainFragment : Fragment() {
     private var isRandomOn = false
     private var isFonOn = false
     private var isFonImageOn = false
+    private var isNightTheme = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +58,7 @@ class MainFragment : Fragment() {
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()
         createTopPanel()
+        isNightTheme = sharedPref.loadBoolean(IS_NIGHT_THEME, false)
         initTopPanel()
     }
 
@@ -138,6 +143,7 @@ class MainFragment : Fragment() {
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                 isTopPanelHide = p1 == R.id.start
                 hide_show_top_panel_button.setImageResource(getTopPanelButtonImage(isTopPanelHide))
+                hide_show_top_panel_button.rotation = getTopPanelRotation(isTopPanelHide)
 
             }
         })
@@ -174,16 +180,23 @@ class MainFragment : Fragment() {
         fon_img_right_button.setOnClickListener {
             if (isFonImageOn) {
                 fonHolder.nextTrack(fon_image)
-                fon_img_trak_text.setText(fonHolder.getFonName(mainFragmentViewModel.isDay))
+                fon_img_trak_text.setText(fonHolder.getFonName())
             }
         }
         fon_img_left_button.setOnClickListener {
             if (isFonImageOn) {
                 fonHolder.previusTrack(fon_image)
-                fon_img_trak_text.setText(fonHolder.getFonName(mainFragmentViewModel.isDay))
+                fon_img_trak_text.setText(fonHolder.getFonName())
             }
         }
         setFonImageParam()
+
+        day_night_constr.setOnClickListener {
+            isNightTheme = !isNightTheme
+            sharedPref.saveBoolean(IS_NIGHT_THEME, isNightTheme)
+            setNightThemeParam()
+        }
+        setNightThemeParam()
     }
 
     private fun clickFinMusic() {
@@ -212,14 +225,33 @@ class MainFragment : Fragment() {
         fon_img_trak_text.setDisabled(!isFonImageOn)
         fon_img_left_button.setDisabled(!isFonImageOn)
         fon_img_right_button.setDisabled(!isFonImageOn)
-        fon_img_trak_text.setText(fonHolder.getFonName(mainFragmentViewModel.isDay))
+        fon_img_trak_text.setText(fonHolder.getFonName())
+    }
+
+    private fun setNightThemeParam(){
+        day_night_text.setDayNight(isNightTheme)
+        setFonImageParam()
+        mainFragmentViewModel.isDay = !isNightTheme
+        if (isNightTheme) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
     private fun getTopPanelButtonImage(isTop: Boolean): Int {
         return if (isTop) {
-            R.drawable.ic_top_panel_to_down
+            R.drawable.button_circle_arrow
         } else {
             R.drawable.ic_top_panel_to_top
+        }
+    }
+
+    private fun getTopPanelRotation(isTop: Boolean): Float{
+        return if (isTop) {
+            270F
+        } else {
+            0F
         }
     }
 

@@ -8,7 +8,6 @@
     <color name="super_black">#333333</color>
     <color name="medium_black">#4D4D4D</color>
     <color name="light_black">#6C6C6C</color>
-    <color name="super_white">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="white_disabled">#80FFFFFF</color>
     <color name="primary_green">#37DAA5</color>
@@ -16,4 +15,9 @@
     //day_night
     <color name="pressed_color">#F5E238</color>
     <color name="start_fon_color">#FFFFFF</color>
+    <color name="panel_background">#6C6C6C</color>
+    <color name="arrow">#4D333333</color>
+    <color name="arrow_disabled">#806C6C6C</color>
+    <color name="super_">#FFFFFF</color>
+    <color name="super_oposit">#333333</color>
 </resources>

@@ -25,7 +25,7 @@ class RandomGenerator(
         }
     }
 
-    private lateinit var runnable: Runnable
+    private var runnable: Runnable? = null
 
     private fun startRandomMusick() {
         runnable = createRandomRunable()
@@ -36,7 +36,9 @@ class RandomGenerator(
     }
 
     private fun stopRandomMusic() {
-        handler.removeCallbacks(runnable)
+        if (runnable != null) {
+            handler.removeCallbacks(runnable)
+        }
     }
 
     private fun createRandomRunable(): Runnable {

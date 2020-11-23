@@ -2,4 +2,9 @@
 <resources>
     <color name="pressed_color">#4795FE</color>
     <color name="start_fon_color">#4D4D4D</color>
+    <color name="panel_background">#333333</color>
+    <color name="arrow">#4DFFFFFF</color>
+    <color name="arrow_disabled">#806C6C6C</color>
+    <color name="super_">#333333</color>
+    <color name="super_oposit">#FFFFFF</color>
 </resources>

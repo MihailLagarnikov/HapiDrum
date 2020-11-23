@@ -296,6 +296,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:visibility="gone"
+            android:elevation="2dp"
             app:layout_constraintBottom_toTopOf="@+id/button_d"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_close" />
@@ -307,6 +308,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@string/close"
+            android:elevation="2dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/image_close"
             app:layout_constraintStart_toEndOf="@+id/image_close"
@@ -446,7 +448,7 @@
         android:drawableEnd="@drawable/ic_arrow_right_button"
         android:text="@string/shop_button"
         android:textAllCaps="false"
-        android:textColor="@color/super_white"
+        android:textColor="@color/super_"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
