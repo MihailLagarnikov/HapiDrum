@@ -20,4 +20,5 @@
     <color name="arrow_disabled">#806C6C6C</color>
     <color name="super_">#FFFFFF</color>
     <color name="super_oposit">#333333</color>
+    <color name="super_oposit_70">#B3333333</color>
 </resources>
