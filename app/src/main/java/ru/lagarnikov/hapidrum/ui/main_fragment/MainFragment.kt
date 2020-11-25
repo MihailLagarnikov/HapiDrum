@@ -10,6 +10,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.twosmalpixels.travel_notes.core.extension.setDayNight
 import com.twosmalpixels.travel_notes.core.extension.setDisabled
 import com.twosmalpixels.travel_notes.core.extension.setPress
@@ -60,6 +61,10 @@ class MainFragment : Fragment() {
         createTopPanel()
         isNightTheme = sharedPref.loadBoolean(IS_NIGHT_THEME, false)
         initTopPanel()
+
+        val fragmentContainer = requireView().findViewById<View>(R.id.instrument_container)
+        val navController = Navigation.findNavController(fragmentContainer)
+        navController.navigate(R.id.action_mainInstrument_to_tree)
     }
 
     private fun createTopPanel() {

@@ -21,6 +21,9 @@
     <string name="weight_main">5.5 kg</string>
     <string name="sound_main">La Minor</string>
 
+    //tree
+    <string name="instrument_tree">Herringbone</string>
+
     //top panel
     <string name="random">Random</string>
     <string name="onn">On</string>

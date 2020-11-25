@@ -45,7 +45,6 @@ abstract class BaseInstrumentFragment : Fragment(),
     abstract fun getLayout(): Int
     abstract fun getInstrumentName(): String
     abstract fun getInstrumentAboutData(): InstrumentAboutData
-    abstract fun stopAllSound(isStop: Boolean)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -189,9 +188,11 @@ abstract class BaseInstrumentFragment : Fragment(),
         }
     }
 
-    private fun createStopAllSoundsObserver(){
+    private fun createStopAllSoundsObserver() {
         mainFragmentViewModel.isStopSound.observe(this, Observer {
-            stopAllSound(it)
+            for (instrKeyParam in getInstrumentParams()) {
+                instrKeyParam.button.isEnabled = !it
+            }
         })
     }
 }

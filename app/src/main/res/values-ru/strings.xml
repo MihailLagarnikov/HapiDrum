@@ -18,6 +18,9 @@
     <string name="weight_main">5.5 кг</string>
     <string name="sound_main">Ля-Минор</string>
 
+    //tree
+    <string name="instrument_tree">Елочка</string>
+
     //top panel
     <string name="random">Рандом</string>
     <string name="onn">Вкл.</string>

@@ -8,5 +8,13 @@
     <fragment
         android:id="@+id/mainInstrument"
         android:name="ru.lagarnikov.hapidrum.ui.instruments.main_instrument.MainInstrument"
-        android:label="MainInstrument" />
+        android:label="MainInstrument" >
+        <action
+            android:id="@+id/action_mainInstrument_to_tree"
+            app:destination="@id/tree" />
+    </fragment>
+    <fragment
+        android:id="@+id/tree"
+        android:name="ru.lagarnikov.hapidrum.ui.instruments.tree.Tree"
+        android:label="Tree" />
 </navigation>
