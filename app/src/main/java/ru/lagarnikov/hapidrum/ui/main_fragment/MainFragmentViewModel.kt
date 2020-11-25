@@ -10,4 +10,9 @@ class MainFragmentViewModel : ViewModel() {
     val currentInstrumentKeyParamsList = MutableLiveData<ArrayList<InstrumentKeyParams>>()
     val visibilityNavigButton = MutableLiveData<Boolean>()
     var isCurrentInstrumentLoaded = false
+    var isStopSound = MutableLiveData<Boolean>()
+
+    init {
+        isStopSound.value = false
+    }
 }

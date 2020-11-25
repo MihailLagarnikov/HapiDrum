@@ -45,6 +45,7 @@ abstract class BaseInstrumentFragment : Fragment(),
     abstract fun getLayout(): Int
     abstract fun getInstrumentName(): String
     abstract fun getInstrumentAboutData(): InstrumentAboutData
+    abstract fun stopAllSound(isStop: Boolean)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +62,7 @@ abstract class BaseInstrumentFragment : Fragment(),
         createLoadSoundObserver()
         createShopOpenBlock()
         setInstrumentsAbout()
+        createStopAllSoundsObserver()
     }
 
     private fun findViews() {
@@ -111,6 +113,7 @@ abstract class BaseInstrumentFragment : Fragment(),
                 textClose?.setVisibility(View.VISIBLE)
             }, resources.getInteger(R.integer.anim_duration_medium).toLong())
             mainFragmentViewModel.visibilityNavigButton.value = false
+            mainFragmentViewModel.isStopSound.value = true
         }
         imgClose?.setOnClickListener(this)
         textClose?.setOnClickListener(this)
@@ -182,6 +185,13 @@ abstract class BaseInstrumentFragment : Fragment(),
                 { mainFragmentViewModel.visibilityNavigButton.value = true },
                 resources.getInteger(R.integer.anim_duration_medium).toLong()
             )
+            mainFragmentViewModel.isStopSound.value = false
         }
+    }
+
+    private fun createStopAllSoundsObserver(){
+        mainFragmentViewModel.isStopSound.observe(this, Observer {
+            stopAllSound(it)
+        })
     }
 }

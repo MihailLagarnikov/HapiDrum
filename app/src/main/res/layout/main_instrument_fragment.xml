@@ -54,7 +54,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/b" />
+            app:srcCompat="@drawable/b"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_c"
@@ -66,7 +67,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/c" />
+            app:srcCompat="@drawable/c"
+            tools:visibility="visible" />
 
         <ImageView
             android:id="@+id/hapi_drum_d"
@@ -148,7 +150,6 @@
             android:id="@+id/button_zero"
             android:layout_width="@dimen/zero_sound_button"
             android:layout_height="@dimen/zero_sound_button"
-            android:layout_marginBottom="50dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -271,35 +272,29 @@
 
         <ImageView
             android:id="@+id/stop_all"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            android:alpha="0.5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/btn_stop_all" />
-
-        <TextView
-            android:id="@+id/text_stop_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/stop_all"
-            app:layout_constraintEnd_toEndOf="@+id/stop_all"
-            app:layout_constraintStart_toStartOf="@+id/stop_all"
-            app:layout_constraintTop_toBottomOf="@+id/stop_all" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_g"
+            app:layout_constraintTop_toBottomOf="@+id/button_g"
+            app:srcCompat="@drawable/btn_stop_all" />
 
         <ImageView
             android:id="@+id/image_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:visibility="gone"
             android:elevation="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/button_d"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/top_panel_height"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_close" />
+            app:srcCompat="@drawable/ic_close"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/text_close"
@@ -307,12 +302,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/close"
             android:elevation="2dp"
+            android:text="@string/close"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/image_close"
             app:layout_constraintStart_toEndOf="@+id/image_close"
-            app:layout_constraintTop_toTopOf="@+id/image_close" />
+            app:layout_constraintTop_toTopOf="@+id/image_close"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

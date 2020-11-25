@@ -94,4 +94,10 @@ class MainInstrument : BaseInstrumentFragment() {
             listAdditional
         )
     }
+
+    override fun stopAllSound(isStop: Boolean) {
+        for (instrKeyParam in getInstrumentParams()) {
+            instrKeyParam.button.isEnabled = !isStop
+        }
+    }
 }
