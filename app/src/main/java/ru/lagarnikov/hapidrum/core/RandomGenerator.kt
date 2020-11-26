@@ -1,9 +1,8 @@
 package ru.lagarnikov.hapidrum.core
 
-import android.view.View
 import android.os.Handler
-import ru.lagarnikov.hapidrum.core.soundlayer.LoopPlayer
-import ru.lagarnikov.hapidrum.core.soundlayer.TouchParam
+import ru.lagarnikov.hapidrum.core.sound_player.LoopPlayer
+import ru.lagarnikov.hapidrum.core.sound_player.TouchParam
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import java.util.*
 import kotlin.collections.ArrayList

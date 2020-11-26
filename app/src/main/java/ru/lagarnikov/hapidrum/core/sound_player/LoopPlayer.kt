@@ -1,4 +1,4 @@
-package ru.lagarnikov.hapidrum.core.soundlayer
+package ru.lagarnikov.hapidrum.core.sound_player
 
 import android.content.Context
 import android.media.SoundPool

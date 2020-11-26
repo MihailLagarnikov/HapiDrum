@@ -4,8 +4,9 @@ package ru.lagarnikov.hapidrum.ui.instruments.tree
 import kotlinx.android.synthetic.main.tree_fragment.*
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.base_fragment.BaseInstrumentFragment
+import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_
 import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_SOUNDS_
-import ru.lagarnikov.hapidrum.core.soundlayer.KeyValues
+import ru.lagarnikov.hapidrum.core.sound_player.KeyValues
 import ru.lagarnikov.hapidrum.model.InstrumentAboutData
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 
@@ -13,14 +14,16 @@ class Tree : BaseInstrumentFragment() {
 
     override fun getLayout() = R.layout.tree_fragment
 
-    override fun getInstrumentName() = getString(R.string.instrument_tree)
+    override fun getInstrumentName() = MAIN_
 
     override fun getInstrumentAboutData(): InstrumentAboutData {
         return return InstrumentAboutData(
             getString(R.string.instrument_main),
             getString(R.string.shop_kosmosky),
             getString(R.string.url_kosmosky),
-            ArrayList()
+            ArrayList(),
+            false,
+            getString(R.string.instrument_tree)
         )
     }
 

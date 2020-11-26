@@ -2,7 +2,7 @@ package ru.lagarnikov.hapidrum.model
 
 import android.widget.Button
 import android.widget.ImageView
-import ru.lagarnikov.hapidrum.core.soundlayer.KeyValues
+import ru.lagarnikov.hapidrum.core.sound_player.KeyValues
 
 data class InstrumentKeyParams(
     val keyParams: KeyValues,

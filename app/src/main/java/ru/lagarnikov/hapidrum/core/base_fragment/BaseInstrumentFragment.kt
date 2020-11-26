@@ -3,6 +3,7 @@ package ru.lagarnikov.hapidrum.core.base_fragment
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.content.Intent
+import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -123,9 +124,15 @@ abstract class BaseInstrumentFragment : Fragment(),
         val instrName = view?.findViewById<TextView>(R.id.instrument_name)
         val shopName = view?.findViewById<TextView>(R.id.shop_name)
         val shopNameLink = view?.findViewById<TextView>(R.id.link_shop_name)
-        instrName?.text = info.name
+        instrName?.text = if (info.fakeName.isEmpty()) info.name else info.fakeName
         shopName?.text = info.shopName
-        shopNameLink?.text = info.shopName
+        shopNameLink?.text = if (info.withoutLink) null else info.shopName
+        if (info.withoutLink) {
+            view?.findViewById<ImageView>(R.id.link_line)?.setColorFilter(
+                requireActivity().resources.getColor(R.color.white),
+                PorterDuff.Mode.SRC_IN
+            )
+        }
         val listAdditional = info.aditinalParams
         if (!listAdditional.isEmpty()) {
             var i = 0

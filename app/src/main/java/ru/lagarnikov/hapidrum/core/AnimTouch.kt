@@ -6,7 +6,7 @@ import android.widget.ImageView
 
 class AnimTouch() {
     private val DURATION_ALFA = 100L
-    private val MAX_ALFA = 0.5F
+    private val MAX_ALFA = 1F
 
     private val DURATION_HANDLE = 2000L
     private val MAX_SIZE_HANDLE = 4F

@@ -1,4 +1,4 @@
-package ru.lagarnikov.hapidrum.core.soundlayer
+package ru.lagarnikov.hapidrum.core.sound_player
 
 enum class KeyValues(val leftValueParam: Float, val rightValueParam: Float) {
     A(0.9F, 0.9F),

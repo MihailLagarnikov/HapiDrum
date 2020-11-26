@@ -21,7 +21,7 @@ class SharedPrefHelper: ISharedPrefHelper {
     }
 
     override fun loadBoolean(key: String, defValue: Boolean): Boolean {
-        return pref.getBoolean(key, defValue) ?: defValue
+        return pref.getBoolean(key, defValue)
     }
 
     override fun saveBoolean(key: String, value: Boolean) {
@@ -31,7 +31,7 @@ class SharedPrefHelper: ISharedPrefHelper {
     }
 
     override fun loadLong(key: String, defValue: Long): Long {
-        return pref.getLong(key, defValue) ?: defValue
+        return pref.getLong(key, defValue)
     }
 
     override fun saveLong(key: String, value: Long) {
@@ -41,7 +41,7 @@ class SharedPrefHelper: ISharedPrefHelper {
     }
 
     override fun loadInt(key: String, defValue: Int): Int {
-        return pref.getInt(key, defValue) ?: defValue
+        return pref.getInt(key, defValue)
     }
 
     override fun saveInt(key: String, value: Int) {
@@ -51,7 +51,7 @@ class SharedPrefHelper: ISharedPrefHelper {
     }
 
     override fun loadDouble(key: String, defValue: Double): Double {
-        return pref.getFloat(key, defValue.toFloat()).toDouble() ?: defValue
+        return pref.getFloat(key, defValue.toFloat()).toDouble()
     }
 
     override fun saveDouble(key: String, value: Double) {

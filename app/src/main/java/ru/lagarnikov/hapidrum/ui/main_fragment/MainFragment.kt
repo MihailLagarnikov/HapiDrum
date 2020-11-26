@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
@@ -23,9 +24,10 @@ import ru.lagarnikov.hapidrum.MyMediaPlayer
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.RandomGenerator
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
-import ru.lagarnikov.hapidrum.core.soundlayer.LoopPlayer
+import ru.lagarnikov.hapidrum.core.sound_player.LoopPlayer
 import ru.lagarnikov.hapidrum.core.fon_holder.IFonHolder
 import ru.lagarnikov.hapidrum.core.sound_loader.SoundFons
+import kotlin.math.roundToInt
 
 
 class MainFragment : Fragment() {
@@ -58,17 +60,22 @@ class MainFragment : Fragment() {
         fonPlayer = MyMediaPlayer(requireContext())
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()
-        createTopPanel()
         isNightTheme = sharedPref.loadBoolean(IS_NIGHT_THEME, false)
         initTopPanel()
+        navigateInstrument(mainFragmentViewModel.getStartInstrument())
 
-        val fragmentContainer = requireView().findViewById<View>(R.id.instrument_container)
-        val navController = Navigation.findNavController(fragmentContainer)
-        navController.navigate(R.id.action_mainInstrument_to_tree)
+        btn_right_instrument.setOnClickListener {
+            navigateInstrument(mainFragmentViewModel.pressRightNavButton())
+        }
+        btn_left_instrument.setOnClickListener {
+            navigateInstrument(mainFragmentViewModel.pressLeftNavButton())
+        }
     }
 
-    private fun createTopPanel() {
-
+    private fun navigateInstrument(fragmentId: Int) {
+        val fragmentContainer = requireView().findViewById<View>(R.id.instrument_container)
+        val navController = Navigation.findNavController(fragmentContainer)
+        navController.navigate(fragmentId)
     }
 
     private fun createInstrumentChangeObserver() {
@@ -121,6 +128,7 @@ class MainFragment : Fragment() {
         hide_show_top_panel_button.setOnClickListener {
             if (isTopPanelHide) {
                 motion_layout_top_panel.transitionToEnd()
+                setTopPanelParams(!isTopPanelHide)
             } else {
                 motion_layout_top_panel.transitionToStart()
             }
@@ -146,6 +154,7 @@ class MainFragment : Fragment() {
             }
 
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+                if (!isTopPanelHide) setTopPanelParams(!isTopPanelHide)
                 isTopPanelHide = p1 == R.id.start
                 hide_show_top_panel_button.setImageResource(getTopPanelButtonImage(isTopPanelHide))
                 hide_show_top_panel_button.rotation = getTopPanelRotation(isTopPanelHide)
@@ -204,6 +213,17 @@ class MainFragment : Fragment() {
         setNightThemeParam()
     }
 
+    private fun setTopPanelParams(isHide: Boolean) {
+        val params: FrameLayout.LayoutParams =
+            motion_layout_top_panel.layoutParams as FrameLayout.LayoutParams
+        if (isHide) {
+            params.height = resources.getDimension(R.dimen.top_panel_height_min).roundToInt()
+        } else {
+            params.height = resources.getDimension(R.dimen.top_panel_height_max).roundToInt()
+        }
+        motion_layout_top_panel.layoutParams = params
+    }
+
     private fun clickFinMusic() {
         if (sharedPref.loadBoolean(SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
             isFonOn = fonPlayer.pressFon()
@@ -233,7 +253,7 @@ class MainFragment : Fragment() {
         fon_img_trak_text.setText(fonHolder.getFonName())
     }
 
-    private fun setNightThemeParam(){
+    private fun setNightThemeParam() {
         day_night_text.setDayNight(isNightTheme)
         setFonImageParam()
         mainFragmentViewModel.isDay = !isNightTheme
@@ -252,7 +272,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun getTopPanelRotation(isTop: Boolean): Float{
+    private fun getTopPanelRotation(isTop: Boolean): Float {
         return if (isTop) {
             270F
         } else {

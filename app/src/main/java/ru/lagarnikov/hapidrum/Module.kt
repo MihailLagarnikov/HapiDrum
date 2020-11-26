@@ -9,6 +9,8 @@ import ru.lagarnikov.hapidrum.core.fon_holder.FonHolder
 import ru.lagarnikov.hapidrum.core.fon_holder.IFonHolder
 import ru.lagarnikov.hapidrum.core.sound_loader.ISoundLoaderUseCase
 import ru.lagarnikov.hapidrum.core.sound_loader.SoundLoaderUseCase
+import ru.lagarnikov.hapidrum.ui.main_fragment.IMainFragmentUseCase
+import ru.lagarnikov.hapidrum.ui.main_fragment.MainFragmentUseCase
 
 val appModule = module {
     single { this }
@@ -17,5 +19,6 @@ val appModule = module {
     single { SharedPrefHelper() as ISharedPrefHelper }
     single { SoundLoaderUseCase(get(), get()) as ISoundLoaderUseCase }
     single { FonHolder(get()) as IFonHolder }
+    single { MainFragmentUseCase(get()) as IMainFragmentUseCase }
 
 }

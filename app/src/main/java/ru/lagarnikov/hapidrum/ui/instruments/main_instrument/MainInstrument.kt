@@ -6,7 +6,7 @@ import ru.lagarnikov.hapidrum.core.base_fragment.BaseInstrumentFragment
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_
 import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_SOUNDS_
-import ru.lagarnikov.hapidrum.core.soundlayer.KeyValues
+import ru.lagarnikov.hapidrum.core.sound_player.KeyValues
 import ru.lagarnikov.hapidrum.model.AditionalInstrumentInfo
 import ru.lagarnikov.hapidrum.model.InstrumentAboutData
 
@@ -91,7 +91,8 @@ class MainInstrument : BaseInstrumentFragment() {
             getString(R.string.instrument_main),
             getString(R.string.shop_kosmosky),
             getString(R.string.url_kosmosky),
-            listAdditional
+            listAdditional,
+            true
         )
     }
 }

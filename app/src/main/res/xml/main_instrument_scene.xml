@@ -35,7 +35,7 @@
         <Constraint
             android:id="@+id/link_shop_name"
             style="@style/Text_medium"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_marginBottom="26dp"
             android:gravity="center"
             motion:layout_constraintBottom_toBottomOf="parent"

@@ -10,5 +10,7 @@
 
     <dimen name="padding_navigation_out">56dp</dimen>
     <dimen name="padding_navigation_normal">16dp</dimen>
-    <dimen name="top_panel_height">164dp</dimen>
+    <dimen name="top_panel_height_max">164dp</dimen>
+
+    <dimen name="top_panel_height_min">54dp</dimen>
 </resources>

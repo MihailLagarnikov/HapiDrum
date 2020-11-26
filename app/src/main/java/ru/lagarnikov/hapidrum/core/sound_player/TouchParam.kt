@@ -1,4 +1,4 @@
-package ru.lagarnikov.hapidrum.core.soundlayer
+package ru.lagarnikov.hapidrum.core.sound_player
 
 class TouchParam {
     companion object{
