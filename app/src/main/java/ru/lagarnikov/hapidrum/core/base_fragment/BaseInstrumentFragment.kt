@@ -68,7 +68,9 @@ abstract class BaseInstrumentFragment : Fragment(),
         createShopOpenBlock()
         setInstrumentsAbout()
         createStopAllSoundsObserver()
-        view.findViewById<ImageView>(R.id.stop_all).setOnClickListener { mainFragmentViewModel.isStopSound.value = mainFragmentViewModel.isStopSound.value }
+        view.findViewById<ImageView>(R.id.stop_all).setOnClickListener {
+            mainFragmentViewModel.isStopSound.value = mainFragmentViewModel.isStopSound.value
+        }
         Analytics.logEventPushWithParameter(
             OPEN_INSTRUMENT,
             FirebaseAnalytics.Param.ITEM_ID,
@@ -90,7 +92,7 @@ abstract class BaseInstrumentFragment : Fragment(),
         progressViewModel =
             ViewModelProviders.of(requireActivity()).get(ProgressViewModel::class.java)
         progressViewModel.showProgress.observe(this, Observer { isShow ->
-            progressBar?.setVisibility(isShow)
+            progressBar?.setVisibility(false)
             content?.setVisibility(!isShow)
         })
     }
@@ -103,7 +105,7 @@ abstract class BaseInstrumentFragment : Fragment(),
         progressViewModel.showProgress.value = !isLoaded
         if (!isLoaded) {
             soundLoaderUseCase.isLoaded.observe(this, Observer {
-                if (it && soundLoaderUseCase.getLoadingInstrumentName().equals(getInstrumentName())) {
+                if (it) {
                     progressViewModel.showProgress.value = false
                     mainFragmentViewModel.isCurrentInstrumentLoaded = true
                     mainFragmentViewModel.currentInstrumentKeyParamsList.value =

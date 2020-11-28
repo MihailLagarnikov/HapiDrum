@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.PermissionChecker
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
@@ -21,6 +22,7 @@ import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.sound_loader.ISoundLoaderUseCase
 import ru.lagarnikov.hapidrum.core.sound_loader.Instruments
 import ru.lagarnikov.hapidrum.core.sound_loader.SoundFons
+import ru.lagarnikov.hapidrum.ui.dilogs.LoadingDialog
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,6 +45,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadSound() {
+        val dialog = if (!sharedPref.loadBoolean(Instruments.values().get(0).sounds.get(0).instrumentName, false)) {
+            LoadingDialog()
+        }else{
+            null
+        }
+        dialog?.show(supportFragmentManager, "tag")
         for (instrument in Instruments.values()) {
             if (sharedPref.loadBoolean(instrument.sounds.get(0).instrumentName, false)) continue
             soundLoaderUseCase.isLoaded.value = false
@@ -53,6 +61,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     job.await()
                     soundLoaderUseCase.isLoaded.value = true
+                    dialog?.dismiss()
+                    Snackbar.make(container, R.string.loading_exit, Snackbar.LENGTH_LONG).show()
                 }
             }
         }
