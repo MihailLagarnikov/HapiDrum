@@ -6,5 +6,8 @@ data class InstrumentAboutData(
     val urlShop: String,
     val aditinalParams: ArrayList<AditionalInstrumentInfo>,
     val withoutLink: Boolean = false,
-    val fakeName: String = ""
+    val fakeName: String = "",
+    val shopNameTitle: String = "",
+    val diametrTitle: String = "",
+    val weightTitle: String = ""
 )

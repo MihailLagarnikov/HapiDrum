@@ -11,5 +11,13 @@ enum class Fons(val param: FonImage) {
             R.string.fon_a_day,
             R.string.fon_a_night
         )
+    ),
+    FON_B(
+        FonImage(
+            R.drawable.watercolor,
+            R.drawable.abstract_night,
+            R.string.fon_b_day,
+            R.string.fon_b_night
+        )
     )
 }

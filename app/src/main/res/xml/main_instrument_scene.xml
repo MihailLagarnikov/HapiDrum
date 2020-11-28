@@ -8,9 +8,12 @@
         motion:constraintSetStart="@+id/start"
         motion:duration="@integer/anim_duration_medium">
 
+
     </Transition>
 
+
     <ConstraintSet android:id="@+id/start">
+
         <Constraint
             android:id="@+id/img_shop"
             android:layout_width="wrap_content"
@@ -21,6 +24,15 @@
             android:visibility="gone"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toBottomOf="@+id/content_instrument" />
+
+        <Constraint
+            android:id="@+id/content_instrument"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:alpha="1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/instrument_name"
@@ -152,6 +164,15 @@
             motion:layout_constraintBottom_toBottomOf="@+id/instrument_name"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="@+id/instrument_name" />
+
+        <Constraint
+            android:id="@+id/content_instrument"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:alpha="0.6"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
             android:id="@+id/instrument_name"

@@ -11,6 +11,12 @@
     <string name="weight_title">Вес:</string>
     <string name="sound_title">Звучание:</string>
     <string name="shop_button">Перейти в магазин</string>
+    <string name="instrument">Инструмент:</string>
+
+    //shops
+    <string name="shop_title_2smallPixels">Разработчик:</string>
+    <string name="weight_title_2smallPixels">С новым годом и рождеством!</string>
+    <string name="rate_2smallPixels">Оценить приложение</string>
 
     //main_insrumaent
     <string name="instrument_main">Горная река</string>

@@ -3,6 +3,7 @@
     <string name="stop_all">Stop all</string>
     <string name="has_not_permission">The program cannot work without this permission - you need to download the sounds of the instruments.</string>
     <string name="close">Close</string>
+    <string name="empty" translatable="false" />
 
     //store content
     <string name="shop_title">Store:</string>
@@ -10,10 +11,16 @@
     <string name="weight_title">Weight:</string>
     <string name="sound_title">Sound:</string>
     <string name="shop_button">Go to store</string>
+    <string name="instrument">Instrument:</string>
 
     //Shops
     <string name="shop_kosmosky" translatable="false">KOSMOSKY</string>
     <string name="url_kosmosky" translatable="false">https://translate.google.com/</string>
+    <string name="shop_2smallPixels" translatable="false">2SmallPixels</string>
+    <string name="url_2smallPixels" translatable="false">https://translate.google.com/</string>
+    <string name="shop_title_2smallPixels">Developer:</string>
+    <string name="weight_title_2smallPixels">Happy New Year and Merry Christmas!</string>
+    <string name="rate_2smallPixels">Rate app</string>
 
     //main_insrumaent
     <string name="instrument_main">Mountain river</string>
@@ -36,6 +43,8 @@
     <string name="nothing" translatable="false">-</string>
 
     //fon image names
-    <string name="fon_a_day" translatable="false">marble</string>
+    <string name="fon_a_day" translatable="false">Marble</string>
     <string name="fon_a_night" translatable="false">Sky Blue</string>
+    <string name="fon_b_day" translatable="false">Watercolor</string>
+    <string name="fon_b_night" translatable="false">Abstract Night</string>
 </resources>

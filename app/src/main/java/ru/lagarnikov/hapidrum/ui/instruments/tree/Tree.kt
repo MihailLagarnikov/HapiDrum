@@ -7,6 +7,7 @@ import ru.lagarnikov.hapidrum.core.base_fragment.BaseInstrumentFragment
 import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_
 import ru.lagarnikov.hapidrum.core.sound_loader.MAIN_SOUNDS_
 import ru.lagarnikov.hapidrum.core.sound_player.KeyValues
+import ru.lagarnikov.hapidrum.model.AditionalInstrumentInfo
 import ru.lagarnikov.hapidrum.model.InstrumentAboutData
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 
@@ -19,11 +20,23 @@ class Tree : BaseInstrumentFragment() {
     override fun getInstrumentAboutData(): InstrumentAboutData {
         return return InstrumentAboutData(
             getString(R.string.instrument_main),
-            getString(R.string.shop_kosmosky),
+            getString(R.string.shop_2smallPixels),
             getString(R.string.url_kosmosky),
-            ArrayList(),
+            arrayListOf(
+                AditionalInstrumentInfo(
+                    getString(R.string.diameter_title),
+                    getString(R.string.instrument_tree)
+                ),
+                AditionalInstrumentInfo(
+                    getString(R.string.weight_title),
+                    getString(R.string.empty)
+                )
+            ),
             false,
-            getString(R.string.instrument_tree)
+            getString(R.string.instrument_tree),
+            getString(R.string.shop_title_2smallPixels),
+            getString(R.string.instrument),
+            getString(R.string.weight_title_2smallPixels)
         )
     }
 

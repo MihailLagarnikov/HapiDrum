@@ -16,6 +16,7 @@ class FonHolder(val sharedPrefHelper: ISharedPrefHelper) : IFonHolder {
     override fun pressFonImage(view: ImageView): Boolean {
         isPress = !isPress
         if (isPress) {
+            position = 0
             setFonFor(view)
         } else {
             removeFonFor(view)
@@ -60,10 +61,6 @@ class FonHolder(val sharedPrefHelper: ISharedPrefHelper) : IFonHolder {
 
 
     private fun getDrawableFon(): Int {
-        position++
-        if (position >= listFon.size) {
-            position = 0
-        }
         return if (sharedPrefHelper.loadBoolean(IS_NIGHT_THEME, false)) {
             listFon.get(position).param.drawableNight
         } else {

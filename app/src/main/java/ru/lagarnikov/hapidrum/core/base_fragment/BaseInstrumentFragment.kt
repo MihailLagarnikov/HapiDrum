@@ -30,6 +30,8 @@ import java.io.File
 abstract class BaseInstrumentFragment : Fragment(),
     ChildInstrumentFragmentListener, View.OnClickListener {
 
+    val MARKET_PREFIX = "market://details?id="
+    val RESULT_AFTER_RATE = 368
     private val SCALE_FORWARD = 0.8f
     private val SCALE_BACK = 1f
 
@@ -154,14 +156,49 @@ abstract class BaseInstrumentFragment : Fragment(),
                 i++
             }
         }
+        if (info.shopNameTitle.isNotEmpty()) {
+            view?.findViewById<TextView>(R.id.title_shop_name)?.setText(info.shopNameTitle)
+        }
+        if (info.diametrTitle.isNotEmpty()) {
+            view?.findViewById<TextView>(R.id.title_diameter)?.setText(info.diametrTitle)
+        }
+        if (info.weightTitle.isNotEmpty()) {
+            view?.findViewById<TextView>(R.id.title_weight)?.setText(info.weightTitle)
+        }
+        if (listAdditional.size < 1) {
+            view?.findViewById<TextView>(R.id.title_diameter)?.setText(null)
+        }
+        if (listAdditional.size < 2) {
+            view?.findViewById<TextView>(R.id.title_weight)?.setText(null)
+        }
+        if (listAdditional.size < 3) {
+            view?.findViewById<TextView>(R.id.title_sound)?.setText(null)
+        }
         val buttonShop = view?.findViewById<Button>(R.id.button_shop)
         buttonShop?.setVisibility(info.urlShop.isNotEmpty())
         buttonShop?.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.setData(Uri.parse(info.urlShop))
-            startActivity(intent)
+            if (info.urlShop.equals(getString(R.string.url_2smallPixels))) {
+                rateStore()
+            } else {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.setData(Uri.parse(info.urlShop))
+                startActivity(intent)
+            }
+        }
+        if (info.urlShop.equals(getString(R.string.url_2smallPixels))) {
+            buttonShop?.setText(R.string.rate_2smallPixels)
         }
 
+    }
+
+    private fun rateStore() {
+        val uri: Uri = Uri.parse(MARKET_PREFIX + requireActivity().packageName)
+        val goToMarket = Intent(Intent.ACTION_VIEW, uri)
+        goToMarket.addFlags(
+            Intent.FLAG_ACTIVITY_NO_HISTORY or
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        )
+        startActivityForResult(goToMarket, RESULT_AFTER_RATE)
     }
 
     private fun scaleInstrumentImg(view: View?, scale: Float) {
