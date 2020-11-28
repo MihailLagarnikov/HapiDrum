@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         storage = FirebaseStorage.getInstance()
         sharedPref.init(getPreferences(Context.MODE_PRIVATE))
-
         if (!hasPermissions()) {
             requestPerms()
         }else{

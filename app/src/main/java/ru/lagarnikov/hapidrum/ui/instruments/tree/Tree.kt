@@ -17,6 +17,8 @@ class Tree : BaseInstrumentFragment() {
 
     override fun getInstrumentName() = MAIN_
 
+    override fun getInstrumentNameForAnalytic() = R.string.instrument_main
+
     override fun getInstrumentAboutData(): InstrumentAboutData {
         return return InstrumentAboutData(
             getString(R.string.instrument_main),

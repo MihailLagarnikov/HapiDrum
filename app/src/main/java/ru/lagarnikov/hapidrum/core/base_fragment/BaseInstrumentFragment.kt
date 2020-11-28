@@ -19,9 +19,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.twosmalpixels.travel_notes.core.extension.setVisibility
 import org.koin.java.standalone.KoinJavaComponent
 import ru.lagarnikov.hapidrum.R
+import ru.lagarnikov.hapidrum.core.analytics.*
 import ru.lagarnikov.hapidrum.core.sound_loader.ISoundLoaderUseCase
 import ru.lagarnikov.hapidrum.model.InstrumentAboutData
 import ru.lagarnikov.hapidrum.ui.main_fragment.MainFragmentViewModel
@@ -47,6 +49,7 @@ abstract class BaseInstrumentFragment : Fragment(),
 
     abstract fun getLayout(): Int
     abstract fun getInstrumentName(): String
+    abstract fun getInstrumentNameForAnalytic(): Int
     abstract fun getInstrumentAboutData(): InstrumentAboutData
 
     override fun onCreateView(
@@ -65,6 +68,12 @@ abstract class BaseInstrumentFragment : Fragment(),
         createShopOpenBlock()
         setInstrumentsAbout()
         createStopAllSoundsObserver()
+        Analytics.logEventPushWithParameter(
+            OPEN_INSTRUMENT,
+            FirebaseAnalytics.Param.ITEM_ID,
+            getInstrumentNameForAnalytic(),
+            requireContext()
+        )
     }
 
     private fun findViews() {
@@ -116,6 +125,11 @@ abstract class BaseInstrumentFragment : Fragment(),
             }, resources.getInteger(R.integer.anim_duration_medium).toLong())
             mainFragmentViewModel.visibilityNavigButton.value = false
             mainFragmentViewModel.isStopSound.value = true
+            Analytics.logEventPushWithParameter(
+                CLICK_BUTTON_SHOW_INFO,
+                FirebaseAnalytics.Param.ITEM_ID,
+                CLICK_OPEN
+            )
         }
         imgClose?.setOnClickListener(this)
         textClose?.setOnClickListener(this)
@@ -177,6 +191,11 @@ abstract class BaseInstrumentFragment : Fragment(),
         val buttonShop = view?.findViewById<Button>(R.id.button_shop)
         buttonShop?.setVisibility(info.urlShop.isNotEmpty())
         buttonShop?.setOnClickListener {
+            Analytics.logEventPushWithParameter(
+                CLICK_BUTTON_GO_STORE,
+                FirebaseAnalytics.Param.ITEM_ID,
+                info.urlShop
+            )
             if (info.urlShop.equals(getString(R.string.url_2smallPixels))) {
                 rateStore()
             } else {
@@ -220,6 +239,11 @@ abstract class BaseInstrumentFragment : Fragment(),
 
     override fun onClick(p0: View?) {
         if (p0?.id == R.id.text_close || p0?.id == R.id.image_close) {
+            Analytics.logEventPushWithParameter(
+                CLICK_BUTTON_SHOW_INFO,
+                FirebaseAnalytics.Param.ITEM_ID,
+                CLICK_CLOSE
+            )
             imgClose?.setVisibility(View.GONE)
             textClose?.setVisibility(View.GONE)
             motionLayout?.transitionToStart()

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.twosmalpixels.travel_notes.core.extension.setDayNight
 import com.twosmalpixels.travel_notes.core.extension.setDisabled
 import com.twosmalpixels.travel_notes.core.extension.setPress
@@ -23,6 +24,7 @@ import org.koin.java.standalone.KoinJavaComponent
 import ru.lagarnikov.hapidrum.MyMediaPlayer
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.RandomGenerator
+import ru.lagarnikov.hapidrum.core.analytics.*
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.sound_player.LoopPlayer
 import ru.lagarnikov.hapidrum.core.fon_holder.IFonHolder
@@ -65,9 +67,19 @@ class MainFragment : Fragment() {
         navigateInstrument(mainFragmentViewModel.getStartInstrument())
 
         btn_right_instrument.setOnClickListener {
+            Analytics.logEventPushWithParameter(
+                CLICK_NAVIGATE,
+                FirebaseAnalytics.Param.ITEM_ID,
+                CLICK_RIGHT
+            )
             navigateInstrument(mainFragmentViewModel.pressRightNavButton())
         }
         btn_left_instrument.setOnClickListener {
+            Analytics.logEventPushWithParameter(
+                CLICK_NAVIGATE,
+                FirebaseAnalytics.Param.ITEM_ID,
+                CLICK_LEFT
+            )
             navigateInstrument(mainFragmentViewModel.pressLeftNavButton())
         }
     }
@@ -158,12 +170,21 @@ class MainFragment : Fragment() {
                 isTopPanelHide = p1 == R.id.start
                 hide_show_top_panel_button.setImageResource(getTopPanelButtonImage(isTopPanelHide))
                 hide_show_top_panel_button.rotation = getTopPanelRotation(isTopPanelHide)
-
+                Analytics.logEventPushWithParameter(
+                    CLICK_TOP_PANEL_OPEN,
+                    FirebaseAnalytics.Param.ITEM_ID,
+                    isTopPanelHide.toString()
+                )
             }
         })
 
         random_constr.setOnClickListener {
             isRandomOn = !isRandomOn
+            Analytics.logEventPushWithParameter(
+                CLICK_RANDOM,
+                FirebaseAnalytics.Param.ITEM_ID,
+                isRandomOn.toString()
+            )
             randomGenerator?.press(isRandomOn)
             random_img.setPress(isRandomOn)
             random_text.setPress(isRandomOn)
@@ -171,18 +192,28 @@ class MainFragment : Fragment() {
         random_img.setPress(isRandomOn)
         random_text.setPress(isRandomOn)
 
-        fon_musick_constr.setOnClickListener { clickFinMusic() }
+        fon_musick_constr.setOnClickListener { clickFonMusic() }
 
         fon_musick_right_button.setOnClickListener {
             if (isFonOn) {
                 fonPlayer.nextTrack()
                 fon_musick_trak_text.setText(fonPlayer.getTrackName())
+                Analytics.logEventPushWithParameter(
+                    CLICK_MUSICK_FON,
+                    FirebaseAnalytics.Param.ITEM_ID,
+                    CLICK_RIGHT
+                )
             }
         }
         fon_musick_left_button.setOnClickListener {
             if (isFonOn) {
                 fonPlayer.previusTrack()
                 fon_musick_trak_text.setText(fonPlayer.getTrackName())
+                Analytics.logEventPushWithParameter(
+                    CLICK_MUSICK_FON,
+                    FirebaseAnalytics.Param.ITEM_ID,
+                    CLICK_LEFT
+                )
             }
         }
         setFonMusickViewsParam()
@@ -190,17 +221,32 @@ class MainFragment : Fragment() {
         fon_img_constr.setOnClickListener {
             isFonImageOn = fonHolder.pressFonImage(fon_image)
             setFonImageParam()
+            Analytics.logEventPushWithParameter(
+                CLICK_IMG_FON,
+                FirebaseAnalytics.Param.ITEM_ID,
+                CLICK_ON_OFF
+            )
         }
         fon_img_right_button.setOnClickListener {
             if (isFonImageOn) {
                 fonHolder.nextTrack(fon_image)
                 fon_img_trak_text.setText(fonHolder.getFonName())
+                Analytics.logEventPushWithParameter(
+                    CLICK_IMG_FON,
+                    FirebaseAnalytics.Param.ITEM_ID,
+                    CLICK_RIGHT
+                )
             }
         }
         fon_img_left_button.setOnClickListener {
             if (isFonImageOn) {
                 fonHolder.previusTrack(fon_image)
                 fon_img_trak_text.setText(fonHolder.getFonName())
+                Analytics.logEventPushWithParameter(
+                    CLICK_IMG_FON,
+                    FirebaseAnalytics.Param.ITEM_ID,
+                    CLICK_LEFT
+                )
             }
         }
         setFonImageParam()
@@ -209,6 +255,13 @@ class MainFragment : Fragment() {
             isNightTheme = !isNightTheme
             sharedPref.saveBoolean(IS_NIGHT_THEME, isNightTheme)
             setNightThemeParam()
+            val analyticValue = if (isNightTheme) R.string.night else R.string.day
+            Analytics.logEventPushWithParameter(
+                CLICK_DAY_NIGHT,
+                FirebaseAnalytics.Param.ITEM_ID,
+                analyticValue,
+                requireContext()
+            )
         }
         setNightThemeParam()
     }
@@ -224,7 +277,12 @@ class MainFragment : Fragment() {
         motion_layout_top_panel.layoutParams = params
     }
 
-    private fun clickFinMusic() {
+    private fun clickFonMusic() {
+        Analytics.logEventPushWithParameter(
+            CLICK_MUSICK_FON,
+            FirebaseAnalytics.Param.ITEM_ID,
+            CLICK_ON_OFF
+        )
         if (sharedPref.loadBoolean(SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
             isFonOn = fonPlayer.pressFon()
             setFonMusickViewsParam()

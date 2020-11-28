@@ -16,6 +16,8 @@ class MainInstrument : BaseInstrumentFragment() {
 
     override fun getInstrumentName() = MAIN_
 
+    override fun getInstrumentNameForAnalytic() = R.string.instrument_main
+
     override fun getInstrumentParams(): ArrayList<InstrumentKeyParams> {
         return arrayListOf(
             InstrumentKeyParams(
