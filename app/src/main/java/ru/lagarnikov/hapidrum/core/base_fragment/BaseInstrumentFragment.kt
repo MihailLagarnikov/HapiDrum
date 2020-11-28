@@ -68,6 +68,7 @@ abstract class BaseInstrumentFragment : Fragment(),
         createShopOpenBlock()
         setInstrumentsAbout()
         createStopAllSoundsObserver()
+        view.findViewById<ImageView>(R.id.stop_all).setOnClickListener { mainFragmentViewModel.isStopSound.value = mainFragmentViewModel.isStopSound.value }
         Analytics.logEventPushWithParameter(
             OPEN_INSTRUMENT,
             FirebaseAnalytics.Param.ITEM_ID,
@@ -116,6 +117,7 @@ abstract class BaseInstrumentFragment : Fragment(),
 
     private fun createShopOpenBlock() {
         val openShop = view?.findViewById<TextView>(R.id.link_shop_name)
+        openShop?.isEnabled = !getInstrumentAboutData().withoutLink
         openShop?.setOnClickListener {
             motionLayout?.transitionToEnd()
             scaleInstrumentImg(imageInstrument, SCALE_FORWARD)

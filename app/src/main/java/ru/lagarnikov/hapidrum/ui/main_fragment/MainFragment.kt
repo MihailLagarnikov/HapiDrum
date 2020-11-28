@@ -83,6 +83,9 @@ class MainFragment : Fragment() {
             )
             navigateInstrument(mainFragmentViewModel.pressLeftNavButton())
         }
+        mainFragmentViewModel.isStopSound.observe(this, Observer {
+           loopPlayer.stopAllSounds()
+        })
     }
 
     private fun navigateInstrument(fragmentId: Int) {
@@ -127,7 +130,6 @@ class MainFragment : Fragment() {
         for (params in instrumentKeyParamsList) {
             loopPlayer.setInstrumentParamsKey(params)
         }
-        stop_all.setOnClickListener { loopPlayer.stopAllSounds() }
     }
 
     private fun loadRandomGenerator(instrumentKeyParamsList: ArrayList<InstrumentKeyParams>) {
