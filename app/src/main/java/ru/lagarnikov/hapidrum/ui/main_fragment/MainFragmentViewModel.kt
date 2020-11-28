@@ -14,10 +14,13 @@ class MainFragmentViewModel : ViewModel() {
     val currentInstrumentKeyParamsList = MutableLiveData<ArrayList<InstrumentKeyParams>>()
     val visibilityNavigButton = MutableLiveData<Boolean>()
     var isCurrentInstrumentLoaded = false
-    var isStopSound = MutableLiveData<Boolean>()
+    val isStopSound = MutableLiveData<Boolean>()
+    val isKeyPressed = MutableLiveData<Boolean>()
+    val keyPressedId = MutableLiveData<Int>()
 
     init {
         isStopSound.value = false
+        isKeyPressed.value = false
     }
 
     fun pressLeftNavButton() = mainFragmentUseCase.pressLeftNavButton()

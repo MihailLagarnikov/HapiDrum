@@ -59,6 +59,7 @@ class MainFragment : Fragment() {
         mainFragmentViewModel =
             ViewModelProviders.of(requireActivity()).get(MainFragmentViewModel::class.java)
         loopPlayer = LoopPlayer(requireContext())
+        loopPlayer.mainFragmentViewModel = mainFragmentViewModel
         fonPlayer = MyMediaPlayer(requireContext())
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()

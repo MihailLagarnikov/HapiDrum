@@ -8,9 +8,6 @@
         motion:constraintSetStart="@+id/start"
         motion:duration="@integer/anim_duration_small">
 
-        <OnSwipe motion:dragDirection="dragDown"
-            motion:onTouchUp="autoComplete"/>
-
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

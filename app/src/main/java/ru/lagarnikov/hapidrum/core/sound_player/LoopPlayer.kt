@@ -7,6 +7,7 @@ import android.view.View
 import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.AnimTouch
 import ru.lagarnikov.hapidrum.model.StreamAndKeyParam
+import ru.lagarnikov.hapidrum.ui.main_fragment.MainFragmentViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -19,6 +20,7 @@ class LoopPlayer(val context: Context) {
     private val touchParam = TouchParam()
     private val streamListWithKeys = ArrayList<StreamAndKeyParam>()
     private val viewList = ArrayList<View>()
+    var mainFragmentViewModel: MainFragmentViewModel? = null
 
     private val mSounPool = SoundPool.Builder()
         .setMaxStreams(MAX_STREAM)
@@ -38,6 +40,8 @@ class LoopPlayer(val context: Context) {
                 MotionEvent.ACTION_DOWN -> {
                     startTime = calendar.time.time
                     anim.startAnimSound(instrumentKeyParams.animView)
+                    mainFragmentViewModel?.keyPressedId?.value = instrumentKeyParams.button.id
+                    mainFragmentViewModel?.isKeyPressed?.value = true
                 }
                 MotionEvent.ACTION_UP -> {
                     val stopTime = calendar.time.time
@@ -48,6 +52,7 @@ class LoopPlayer(val context: Context) {
                         instrumentKeyParams.keyParams
                     )
                     anim.stopAnimSound()
+                    mainFragmentViewModel?.isKeyPressed?.value = false
                 }
 
             }
