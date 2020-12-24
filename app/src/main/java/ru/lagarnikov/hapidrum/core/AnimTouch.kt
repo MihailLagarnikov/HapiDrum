@@ -4,14 +4,10 @@ import android.animation.ObjectAnimator
 import android.view.View
 import android.widget.ImageView
 
-class AnimTouch() {
+class AnimTouch {
+
     private val DURATION_ALFA = 100L
     private val MAX_ALFA = 1F
-
-    private val DURATION_HANDLE = 2000L
-    private val MAX_SIZE_HANDLE = 4F
-    private val NORM_SIZE_HANDLE = 1F
-    private val COUNT_HANDLE = 2
 
     private var imageAnim: ImageView? = null
     private var animStop: ObjectAnimator? = null
@@ -31,9 +27,4 @@ class AnimTouch() {
             animStop?.start()
         }
     }
-
-    fun animHandleStopIcon(imageView: ImageView) {
-
-    }
-
 }

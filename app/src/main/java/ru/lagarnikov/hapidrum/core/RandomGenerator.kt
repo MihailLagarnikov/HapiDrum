@@ -15,6 +15,7 @@ class RandomGenerator(
 
     private val handler = Handler()
     private val random = Random()
+    private var runnable: Runnable? = null
 
     fun press(isOn: Boolean) {
         if (isOn) {
@@ -23,8 +24,6 @@ class RandomGenerator(
             stopRandomMusic()
         }
     }
-
-    private var runnable: Runnable? = null
 
     private fun startRandomMusick() {
         runnable = createRandomRunable()

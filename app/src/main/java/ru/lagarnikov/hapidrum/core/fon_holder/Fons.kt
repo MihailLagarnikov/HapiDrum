@@ -4,6 +4,7 @@ import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.model.FonImage
 
 enum class Fons(val param: FonImage) {
+
     FON_A(
         FonImage(
             R.drawable.marble,

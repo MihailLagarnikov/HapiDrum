@@ -1,6 +1,6 @@
 package ru.lagarnikov.hapidrum.core.sound_player
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.media.SoundPool
 import android.view.MotionEvent
 import android.view.View
@@ -11,26 +11,29 @@ import ru.lagarnikov.hapidrum.ui.main_fragment.MainFragmentViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class LoopPlayer(val context: Context) {
+class LoopPlayer {
+
     private val MAX_STREAM = 30
     private val PRIORITY = 1
     private val LEFT_VALUME_DEF = 1f
     private val RIGHT_VALUME_DEF = 1f
     private val RATE_DEF = 1f
-    private val touchParam = TouchParam()
-    private val streamListWithKeys = ArrayList<StreamAndKeyParam>()
-    private val viewList = ArrayList<View>()
+
+    private val mTouchParam = TouchParam()
+    private val mStreamListWithKeys = ArrayList<StreamAndKeyParam>()
+    private val mViewList = ArrayList<View>()
     var mainFragmentViewModel: MainFragmentViewModel? = null
 
-    private val mSounPool = SoundPool.Builder()
+    private val mSoundPool = SoundPool.Builder()
         .setMaxStreams(MAX_STREAM)
         .build()
 
+    @SuppressLint("ClickableViewAccessibility")
     fun setInstrumentParamsKey(instrumentKeyParams: InstrumentKeyParams) {
-        viewList.add(instrumentKeyParams.button)
+        mViewList.add(instrumentKeyParams.button)
         val anim = AnimTouch()
-        val sound = mSounPool.load(instrumentKeyParams.fileName, PRIORITY)
-        streamListWithKeys.add(StreamAndKeyParam(sound, instrumentKeyParams))
+        val sound = mSoundPool.load(instrumentKeyParams.fileName, PRIORITY)
+        mStreamListWithKeys.add(StreamAndKeyParam(sound, instrumentKeyParams))
         var stream: Int? = null
 
         var startTime = 0L
@@ -54,7 +57,6 @@ class LoopPlayer(val context: Context) {
                     anim.stopAnimSound()
                     mainFragmentViewModel?.isKeyPressed?.value = false
                 }
-
             }
             true
         }
@@ -68,13 +70,13 @@ class LoopPlayer(val context: Context) {
     ): Int? {
         soundId?.run {
             if (streamId != null) {
-                mSounPool.stop(streamId)
+                mSoundPool.stop(streamId)
             }
-            mSounPool.autoResume()
-            return mSounPool.play(
+            mSoundPool.autoResume()
+            return mSoundPool.play(
                 soundId,
-                LEFT_VALUME_DEF * touchParam.getTouchChangeValue(timeTouch) * sondName.leftValueParam,
-                RIGHT_VALUME_DEF * touchParam.getTouchChangeValue(timeTouch) * sondName.rightValueParam,
+                LEFT_VALUME_DEF * mTouchParam.getTouchChangeValue(timeTouch) * sondName.leftValueParam,
+                RIGHT_VALUME_DEF * mTouchParam.getTouchChangeValue(timeTouch) * sondName.rightValueParam,
                 0,
                 0,
                 RATE_DEF
@@ -84,16 +86,16 @@ class LoopPlayer(val context: Context) {
     }
 
     fun stopAllSounds() {
-        for (streamId in streamListWithKeys) {
+        for (streamId in mStreamListWithKeys) {
             if (streamId.stream != null) {
-                mSounPool.stop(streamId.stream)
+                mSoundPool.stop(streamId.stream)
             }
         }
-        mSounPool.autoPause()
+        mSoundPool.autoPause()
     }
 
     fun randomTouchEvent(instrumentKeyParams: InstrumentKeyParams, timeTouch: Long) {
-        for (streamParam in streamListWithKeys) {
+        for (streamParam in mStreamListWithKeys) {
             if (streamParam.instrumentKeyParams.equals(instrumentKeyParams)) {
                 touchSoundEvent(
                     timeTouch,
@@ -103,6 +105,5 @@ class LoopPlayer(val context: Context) {
                 )
             }
         }
-
     }
 }

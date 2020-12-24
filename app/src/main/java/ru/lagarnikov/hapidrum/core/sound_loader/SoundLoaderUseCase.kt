@@ -1,10 +1,11 @@
 package ru.lagarnikov.hapidrum.core.sound_loader
 
-import android.os.Environment
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.ISharedPrefHelper
+import ru.lagarnikov.hapidrum.BuildConfig
 import ru.lagarnikov.hapidrum.core.fairbase_storage.IFairbaseStorageBase
 import ru.lagarnikov.hapidrum.model.InstrumentSound
 import java.io.File
@@ -16,46 +17,43 @@ class SoundLoaderUseCase(
 
     private val PAUSE_TIME = 100L
     override val isLoaded = MutableLiveData<Boolean>()
-    var currentInstrument = ""
 
-    override fun isInstrumentSoundLoaded(insrtumentName: String) =
-        sharedPrefHelper.loadBoolean(insrtumentName, false)
-
-    override suspend fun loadSounds(insrtument: Instruments, storage: FirebaseStorage) {
-        currentInstrument = insrtument.sounds.get(0).instrumentName
+    override suspend fun loadSounds(
+        insrtument: Instruments,
+        fileDir: File,
+        storage: FirebaseStorage
+    ) {
         var listState = insrtument.sounds.size
         for (instrumentSound in insrtument.sounds) {
-            startLoad(instrumentSound, storage).addOnSuccessListener {
+            startLoad(instrumentSound, storage, fileDir).addOnSuccessListener {
                 listState--
+                Log.d("asqs", "yyy")
             }.addOnFailureListener {
+                Log.d("asqs", "nnnn")
             }
         }
         while (listState != 0) {
             Thread.sleep(PAUSE_TIME)
         }
-        sharedPrefHelper.saveBoolean(insrtument.sounds.get(0).instrumentName, true)
+        sharedPrefHelper.saveBoolean(BuildConfig.VERSION_NAME + insrtument.sounds.get(0).instrumentName, true)
     }
 
     private suspend fun startLoad(
         instrumentSound: InstrumentSound,
-        storage: FirebaseStorage
+        storage: FirebaseStorage,
+        fileDir: File
     ): FileDownloadTask {
-        val sdDir: File = Environment.getExternalStorageDirectory()
-
         return fairbaseStorageBase.loadSound(
             instrumentSound,
-            File(sdDir, instrumentSound.fileLocalName + instrumentSound.fileExtension),
+            File(fileDir, instrumentSound.fileLocalName + instrumentSound.fileExtension),
             storage
         )
     }
 
-    override fun getLoadingInstrumentName() = currentInstrument
-
-    override suspend fun loadSounds(soundFon: SoundFons, storage: FirebaseStorage) {
-        currentInstrument = soundFon.sounds.get(0).instrumentName
+    override suspend fun loadSounds(soundFon: SoundFons, fileDir: File, storage: FirebaseStorage) {
         var listState = soundFon.sounds.size
         for (instrumentSound in soundFon.sounds) {
-            startLoad(instrumentSound, storage).addOnSuccessListener {
+            startLoad(instrumentSound, storage, fileDir).addOnSuccessListener {
                 listState--
             }.addOnFailureListener {
             }
@@ -63,6 +61,6 @@ class SoundLoaderUseCase(
         while (listState != 0) {
             Thread.sleep(PAUSE_TIME)
         }
-        sharedPrefHelper.saveBoolean(soundFon.sounds.get(0).instrumentName, true)
+        sharedPrefHelper.saveBoolean(BuildConfig.VERSION_NAME + soundFon.sounds.get(0).instrumentName, true)
     }
 }

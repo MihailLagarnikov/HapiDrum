@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.PermissionChecker
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
@@ -18,13 +17,15 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.koin.java.standalone.KoinJavaComponent
+import ru.lagarnikov.hapidrum.BuildConfig
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.sound_loader.ISoundLoaderUseCase
 import ru.lagarnikov.hapidrum.core.sound_loader.Instruments
 import ru.lagarnikov.hapidrum.core.sound_loader.SoundFons
 import ru.lagarnikov.hapidrum.ui.dilogs.LoadingDialog
+import java.io.File
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), FilePathLoad {
 
     private val PERMISSION_REQUEST_CODE = 443
     private val soundLoaderUseCase: ISoundLoaderUseCase by KoinJavaComponent.inject(ISoundLoaderUseCase::class.java)
@@ -45,19 +46,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadSound() {
-        val dialog = if (!sharedPref.loadBoolean(Instruments.values().get(0).sounds.get(0).instrumentName, false)) {
+        val dialog = if (!sharedPref.loadBoolean(BuildConfig.VERSION_NAME + Instruments.values().get(0).sounds.get(0).instrumentName, false)) {
             LoadingDialog()
         }else{
             null
         }
         dialog?.show(supportFragmentManager, "tag")
         for (instrument in Instruments.values()) {
-            if (sharedPref.loadBoolean(instrument.sounds.get(0).instrumentName, false)) continue
+            if (sharedPref.loadBoolean(BuildConfig.VERSION_NAME + instrument.sounds.get(0).instrumentName, false)) continue
             soundLoaderUseCase.isLoaded.value = false
             GlobalScope.launch(Dispatchers.Main){
-                if (!soundLoaderUseCase.isInstrumentSoundLoaded(instrument.name)) {
+                if (!sharedPref.loadBoolean(BuildConfig.VERSION_NAME + instrument.name, false)) {
                     val job = GlobalScope.async{
-                        soundLoaderUseCase.loadSounds(instrument,  storage)
+                        soundLoaderUseCase.loadSounds(instrument, getFileForLoading(),  storage)
                     }
                     job.await()
                     soundLoaderUseCase.isLoaded.value = true
@@ -71,12 +72,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFonMusick() {
         for (soundFon in SoundFons.values()) {
-            if (sharedPref.loadBoolean(soundFon.sounds.get(0).instrumentName, false)) continue
+            if (sharedPref.loadBoolean(BuildConfig.VERSION_NAME + soundFon.sounds.get(0).instrumentName, false)) continue
             soundLoaderUseCase.isLoaded.value = false
             GlobalScope.launch(Dispatchers.Main){
-                if (!soundLoaderUseCase.isInstrumentSoundLoaded(soundFon.name)) {
+                if (sharedPref.loadBoolean(BuildConfig.VERSION_NAME + soundFon.name, false)) {
                     val job = GlobalScope.async{
-                        soundLoaderUseCase.loadSounds(soundFon,  storage)
+                        soundLoaderUseCase.loadSounds(soundFon, getFileForLoading(),   storage)
                     }
                     job.await()
                     soundLoaderUseCase.isLoaded.value = true
@@ -128,5 +129,9 @@ class MainActivity : AppCompatActivity() {
         }else{
             Snackbar.make(container, R.string.has_not_permission, Snackbar.LENGTH_LONG)
         }
+    }
+
+    override fun getFileForLoading(): File {
+        return filesDir
     }
 }

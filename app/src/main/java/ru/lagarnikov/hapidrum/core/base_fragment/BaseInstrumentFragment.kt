@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.PorterDuff
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +20,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.twosmalpixels.travel_notes.core.extension.setVisibility
+import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.ISharedPrefHelper
 import org.koin.java.standalone.KoinJavaComponent
+import ru.lagarnikov.hapidrum.BuildConfig
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.analytics.*
 import ru.lagarnikov.hapidrum.core.sound_loader.ISoundLoaderUseCase
 import ru.lagarnikov.hapidrum.model.InstrumentAboutData
+import ru.lagarnikov.hapidrum.ui.FilePathLoad
 import ru.lagarnikov.hapidrum.ui.main_fragment.MainFragmentViewModel
 import java.io.File
 
@@ -42,6 +44,7 @@ abstract class BaseInstrumentFragment : Fragment(),
     private val soundLoaderUseCase: ISoundLoaderUseCase by KoinJavaComponent.inject(
         ISoundLoaderUseCase::class.java
     )
+    private val sharedPref: ISharedPrefHelper by KoinJavaComponent.inject(ISharedPrefHelper::class.java)
     private var motionLayout: MotionLayout? = null
     private var imgClose: ImageView? = null
     private var imageInstrument: ImageView? = null
@@ -91,20 +94,20 @@ abstract class BaseInstrumentFragment : Fragment(),
         val content = view?.findViewById<ConstraintLayout>(R.id.content_instrument)
         progressViewModel =
             ViewModelProviders.of(requireActivity()).get(ProgressViewModel::class.java)
-        progressViewModel.showProgress.observe(this, Observer { isShow ->
+        progressViewModel.showProgress.observe(viewLifecycleOwner, Observer { isShow ->
             progressBar?.setVisibility(false)
             content?.setVisibility(!isShow)
         })
     }
 
     private fun createLoadSoundObserver() {
-        val isLoaded = soundLoaderUseCase.isInstrumentSoundLoaded(getInstrumentName())
+        val isLoaded = sharedPref.loadBoolean(BuildConfig.VERSION_NAME + getInstrumentName(), false)
         mainFragmentViewModel =
             ViewModelProviders.of(requireActivity()).get(MainFragmentViewModel::class.java)
         mainFragmentViewModel.isCurrentInstrumentLoaded = isLoaded
         progressViewModel.showProgress.value = !isLoaded
         if (!isLoaded) {
-            soundLoaderUseCase.isLoaded.observe(this, Observer {
+            soundLoaderUseCase.isLoaded.observe(viewLifecycleOwner, Observer {
                 if (it) {
                     progressViewModel.showProgress.value = false
                     mainFragmentViewModel.isCurrentInstrumentLoaded = true
@@ -234,11 +237,9 @@ abstract class BaseInstrumentFragment : Fragment(),
         animator.start()
     }
 
-    override fun isLoaded() = soundLoaderUseCase.isInstrumentSoundLoaded(getInstrumentName())
-
     protected fun getFilePath(name: String, ext: String): String {
-        val sdDir: File = Environment.getExternalStorageDirectory()
-        return File(sdDir, name + ext).absolutePath
+        val fileDir = (requireActivity() as FilePathLoad).getFileForLoading()
+        return File(fileDir, name + ext).absolutePath
     }
 
     override fun onClick(p0: View?) {
@@ -261,7 +262,7 @@ abstract class BaseInstrumentFragment : Fragment(),
     }
 
     private fun createStopAllSoundsObserver() {
-        mainFragmentViewModel.isStopSound.observe(this, Observer {
+        mainFragmentViewModel.isStopSound.observe(viewLifecycleOwner, Observer {
             for (instrKeyParam in getInstrumentParams()) {
                 instrKeyParam.button.isEnabled = !it
             }

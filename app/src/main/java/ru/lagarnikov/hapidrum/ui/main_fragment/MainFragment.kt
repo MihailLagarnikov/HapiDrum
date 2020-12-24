@@ -19,8 +19,8 @@ import com.twosmalpixels.travel_notes.core.extension.setPress
 import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.IS_NIGHT_THEME
 import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.ISharedPrefHelper
 import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.android.synthetic.main.main_instrument_fragment.*
 import org.koin.java.standalone.KoinJavaComponent
+import ru.lagarnikov.hapidrum.BuildConfig
 import ru.lagarnikov.hapidrum.MyMediaPlayer
 import ru.lagarnikov.hapidrum.R
 import ru.lagarnikov.hapidrum.core.RandomGenerator
@@ -29,6 +29,8 @@ import ru.lagarnikov.hapidrum.model.InstrumentKeyParams
 import ru.lagarnikov.hapidrum.core.sound_player.LoopPlayer
 import ru.lagarnikov.hapidrum.core.fon_holder.IFonHolder
 import ru.lagarnikov.hapidrum.core.sound_loader.SoundFons
+import ru.lagarnikov.hapidrum.core.sound_player.IMyMediaPlayer
+import ru.lagarnikov.hapidrum.ui.FilePathLoad
 import kotlin.math.roundToInt
 
 
@@ -37,7 +39,7 @@ class MainFragment : Fragment() {
     private val sharedPref: ISharedPrefHelper by KoinJavaComponent.inject(ISharedPrefHelper::class.java)
     private val fonHolder: IFonHolder by KoinJavaComponent.inject(IFonHolder::class.java)
     private lateinit var loopPlayer: LoopPlayer
-    private lateinit var fonPlayer: MyMediaPlayer
+    private lateinit var fonPlayer: IMyMediaPlayer
     private lateinit var mainFragmentViewModel: MainFragmentViewModel
     private var randomGenerator: RandomGenerator? = null
     private var isTopPanelHide = true
@@ -58,9 +60,9 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mainFragmentViewModel =
             ViewModelProviders.of(requireActivity()).get(MainFragmentViewModel::class.java)
-        loopPlayer = LoopPlayer(requireContext())
+        loopPlayer = LoopPlayer()
         loopPlayer.mainFragmentViewModel = mainFragmentViewModel
-        fonPlayer = MyMediaPlayer(requireContext())
+        fonPlayer = MyMediaPlayer(requireContext(), (requireActivity() as FilePathLoad).getFileForLoading())
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()
         isNightTheme = sharedPref.loadBoolean(IS_NIGHT_THEME, false)
@@ -83,7 +85,7 @@ class MainFragment : Fragment() {
             )
             navigateInstrument(mainFragmentViewModel.pressLeftNavButton())
         }
-        mainFragmentViewModel.isStopSound.observe(this, Observer {
+        mainFragmentViewModel.isStopSound.observe(viewLifecycleOwner, Observer {
            loopPlayer.stopAllSounds()
         })
     }
@@ -95,7 +97,7 @@ class MainFragment : Fragment() {
     }
 
     private fun createInstrumentChangeObserver() {
-        mainFragmentViewModel.currentInstrumentKeyParamsList.observe(this, Observer {
+        mainFragmentViewModel.currentInstrumentKeyParamsList.observe(viewLifecycleOwner, Observer {
             if (mainFragmentViewModel.isCurrentInstrumentLoaded) {
                 loadSamples(it)
                 loadRandomGenerator(it)
@@ -108,7 +110,7 @@ class MainFragment : Fragment() {
         val TRANSLATE_LEFT_OUT = -resources.getDimension(R.dimen.padding_navigation_out)
         val TRANSLATE_RIGHT_NORMAL = -resources.getDimension(R.dimen.padding_navigation_normal)
         val TRANSLATE_RIGHT_OUT = resources.getDimension(R.dimen.padding_navigation_out)
-        mainFragmentViewModel.visibilityNavigButton.observe(this, Observer {
+        mainFragmentViewModel.visibilityNavigButton.observe(viewLifecycleOwner, Observer {
             translater(btn_left_instrument, if (it) TRANSLATE_LEFT_NORMAL else TRANSLATE_LEFT_OUT)
             translater(
                 btn_right_instrument,
@@ -222,7 +224,7 @@ class MainFragment : Fragment() {
         setFonMusickViewsParam()
 
         fon_img_constr.setOnClickListener {
-            isFonImageOn = fonHolder.pressFonImage(fon_image)
+            isFonImageOn = fonHolder.pressFonImageSwitch(fon_image)
             setFonImageParam()
             Analytics.logEventPushWithParameter(
                 CLICK_IMG_FON,
@@ -286,8 +288,8 @@ class MainFragment : Fragment() {
             FirebaseAnalytics.Param.ITEM_ID,
             CLICK_ON_OFF
         )
-        if (sharedPref.loadBoolean(SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
-            isFonOn = fonPlayer.pressFon()
+        if (sharedPref.loadBoolean(BuildConfig.VERSION_NAME + SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
+            isFonOn = fonPlayer.pressSwitch()
             setFonMusickViewsParam()
             fon_musick_trak_text.setText(fonPlayer.getTrackName())
         } else {

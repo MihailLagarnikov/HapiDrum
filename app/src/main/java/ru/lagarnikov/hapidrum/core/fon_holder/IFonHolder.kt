@@ -4,7 +4,7 @@ import android.widget.ImageView
 
 interface IFonHolder {
 
-    fun pressFonImage(view: ImageView): Boolean
+    fun pressFonImageSwitch(view: ImageView): Boolean
     fun nextTrack(view: ImageView)
     fun previusTrack(view: ImageView)
     fun getFonName(): Int
