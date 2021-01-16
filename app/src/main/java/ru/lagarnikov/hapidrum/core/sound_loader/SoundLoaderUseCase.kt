@@ -6,9 +6,11 @@ import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.twosmalpixels.travel_notes.core.repositoriy.SharedPref.ISharedPrefHelper
 import ru.lagarnikov.hapidrum.BuildConfig
+import ru.lagarnikov.hapidrum.MyApp
 import ru.lagarnikov.hapidrum.core.fairbase_storage.IFairbaseStorageBase
 import ru.lagarnikov.hapidrum.model.InstrumentSound
 import java.io.File
+import java.lang.RuntimeException
 
 class SoundLoaderUseCase(
     val sharedPrefHelper: ISharedPrefHelper,
@@ -27,9 +29,9 @@ class SoundLoaderUseCase(
         for (instrumentSound in insrtument.sounds) {
             startLoad(instrumentSound, storage, fileDir).addOnSuccessListener {
                 listState--
-                Log.d("asqs", "yyy")
+                Log.d("asqs", "yyy " + instrumentSound.instrumentName)
             }.addOnFailureListener {
-                Log.d("asqs", "nnnn")
+                MyApp.crashlytics.recordException(RuntimeException("loadSounds Failure instrumentSound - " + instrumentSound.instrumentName))
             }
         }
         while (listState != 0) {

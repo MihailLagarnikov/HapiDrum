@@ -17,6 +17,7 @@ class MainFragmentViewModel : ViewModel() {
     val isStopSound = MutableLiveData<Boolean>()
     val isKeyPressed = MutableLiveData<Boolean>()
     val keyPressedId = MutableLiveData<Int>()
+    val deepLinkNavigateFragment = MutableLiveData<Int>()
 
     init {
         isStopSound.value = false

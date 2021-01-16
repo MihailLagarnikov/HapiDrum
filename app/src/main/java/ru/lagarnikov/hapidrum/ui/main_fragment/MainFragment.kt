@@ -62,7 +62,8 @@ class MainFragment : Fragment() {
             ViewModelProviders.of(requireActivity()).get(MainFragmentViewModel::class.java)
         loopPlayer = LoopPlayer()
         loopPlayer.mainFragmentViewModel = mainFragmentViewModel
-        fonPlayer = MyMediaPlayer(requireContext(), (requireActivity() as FilePathLoad).getFileForLoading())
+        fonPlayer =
+            MyMediaPlayer(requireContext(), (requireActivity() as FilePathLoad).getFileForLoading())
         createInstrumentChangeObserver()
         createVisiblNavButtonObserver()
         isNightTheme = sharedPref.loadBoolean(IS_NIGHT_THEME, false)
@@ -86,11 +87,14 @@ class MainFragment : Fragment() {
             navigateInstrument(mainFragmentViewModel.pressLeftNavButton())
         }
         mainFragmentViewModel.isStopSound.observe(viewLifecycleOwner, Observer {
-           loopPlayer.stopAllSounds()
+            loopPlayer.stopAllSounds()
+        })
+        mainFragmentViewModel.deepLinkNavigateFragment.observe(viewLifecycleOwner, Observer {
+            navigateInstrument(it)
         })
     }
 
-    private fun navigateInstrument(fragmentId: Int) {
+    fun navigateInstrument(fragmentId: Int) {
         val fragmentContainer = requireView().findViewById<View>(R.id.instrument_container)
         val navController = Navigation.findNavController(fragmentContainer)
         navController.navigate(fragmentId)
@@ -126,7 +130,6 @@ class MainFragment : Fragment() {
         animator.repeatMode = ObjectAnimator.RESTART
         animator.start()
     }
-
 
     private fun loadSamples(instrumentKeyParamsList: ArrayList<InstrumentKeyParams>) {
         for (params in instrumentKeyParamsList) {
@@ -288,7 +291,11 @@ class MainFragment : Fragment() {
             FirebaseAnalytics.Param.ITEM_ID,
             CLICK_ON_OFF
         )
-        if (sharedPref.loadBoolean(BuildConfig.VERSION_NAME + SoundFons.FON_LIST.sounds.get(0).instrumentName, false)) {
+        if (sharedPref.loadBoolean(
+                BuildConfig.VERSION_NAME + SoundFons.FON_LIST.sounds.get(0).instrumentName,
+                false
+            )
+        ) {
             isFonOn = fonPlayer.pressSwitch()
             setFonMusickViewsParam()
             fon_musick_trak_text.setText(fonPlayer.getTrackName())

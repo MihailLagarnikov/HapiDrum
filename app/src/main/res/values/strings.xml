@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HapiDrum</string>
+    <string name="app_name" translatable="false">LittleDrum</string>
     <string name="stop_all">Stop all</string>
     <string name="has_not_permission">The program cannot work without this permission - you need to download the sounds of the instruments.</string>
     <string name="close">Close</string>
@@ -7,6 +7,11 @@
     <string name="loading">Loading</string>
     <string name="loading_exit">loading is complete</string>
     <string name="loading_text">Wait a moment, instrument sounds and background music are loading</string>
+
+    //utils
+    <string name="link_host" translatable="false">lp.littledrum.com</string>
+    <string name="link_path_prefix" translatable="false">/linksPage/</string>
+    <string name="link_path_prefix_lower" translatable="false">/linkspage/</string>
 
     //store content
     <string name="shop_title">Store:</string>
