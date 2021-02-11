@@ -38,7 +38,7 @@ class Tree : BaseInstrumentFragment() {
     override fun getInstrumentNameForAnalytic() = R.string.instrument_tree
 
     override fun getInstrumentAboutData(): InstrumentAboutData {
-        return return InstrumentAboutData(
+        return InstrumentAboutData(
             getString(R.string.instrument_main),
             getString(R.string.shop_2smallPixels),
             getString(R.string.url_kosmosky),

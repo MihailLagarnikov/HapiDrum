@@ -17,4 +17,8 @@
         android:id="@+id/tree"
         android:name="ru.lagarnikov.hapidrum.ui.instruments.tree.Tree"
         android:label="Tree" />
+    <fragment
+        android:id="@+id/unisonOfHearts"
+        android:name="ru.lagarnikov.hapidrum.ui.instruments.krasnoyarsk_akebono.UnisonOfHearts"
+        android:label="UnisonOfHearts" />
 </navigation>

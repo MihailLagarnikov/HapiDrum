@@ -29,6 +29,13 @@
     //tree
     <string name="instrument_tree">Елочка</string>
 
+    //unison_of_hearts_insrumaent
+    <string name="unison_of_hearts_name">Унисон сердец</string>
+    <string name="diameter_unison_of_hearts">22 см</string>
+    <string name="weight_unison_of_hearts">1.6 кг</string>
+    <string name="sound_unison_of_hearts">Акебоно до 432гц</string>
+
+
     //top panel
     <string name="random">Рандом</string>
     <string name="onn">Вкл.</string>

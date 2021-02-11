@@ -26,6 +26,8 @@
     <string name="url_kosmosky" translatable="false">https://translate.google.com/</string>
     <string name="shop_2smallPixels" translatable="false">2SmallPixels</string>
     <string name="url_2smallPixels" translatable="false">https://translate.google.com/</string>
+    <string name="shop_gluckofoniya" translatable="false">Gluckofoniya</string>
+    <string name="url_gluckofoniya" translatable="false">https://vk.com/gluckofoniya/</string>
     <string name="shop_title_2smallPixels">Developer:</string>
     <string name="weight_title_2smallPixels">Happy New Year and Merry Christmas!</string>
     <string name="rate_2smallPixels">Rate app</string>
@@ -38,6 +40,12 @@
 
     //tree
     <string name="instrument_tree">Herringbone</string>
+
+    //unison_of_hearts_insrumaent
+    <string name="unison_of_hearts_name">Unison of hearts</string>
+    <string name="diameter_unison_of_hearts">22 см</string>
+    <string name="weight_unison_of_hearts">1.6 кг</string>
+    <string name="sound_unison_of_hearts">Akebono do 432Hz</string>
 
     //top panel
     <string name="random">Random</string>
