@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/motion_instrument"
-    app:layoutDescription="@xml/main_instrument_scene"
-    tools:layoutDescription="@null"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+    android:orientation="vertical"
+    app:layoutDescription="@xml/main_instrument_scene"
+    tools:layoutDescription="@null">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_instrument"
@@ -288,11 +286,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/top_panel_height_max"
             android:elevation="2dp"
             android:visibility="gone"
-            android:layout_marginTop="@dimen/top_panel_height_max"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_close"
             tools:visibility="visible" />
 
@@ -311,7 +309,6 @@
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <ImageView
         android:id="@+id/img_shop"
@@ -338,11 +335,11 @@
         android:id="@+id/link_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:src="@drawable/ic_line_stroke"
-        app:layout_constraintStart_toStartOf="@+id/link_shop_name"
         app:layout_constraintEnd_toEndOf="@id/link_shop_name"
-        app:layout_constraintTop_toBottomOf="@+id/link_shop_name"
-        android:layout_marginTop="2dp"/>
+        app:layout_constraintStart_toStartOf="@+id/link_shop_name"
+        app:layout_constraintTop_toBottomOf="@+id/link_shop_name" />
 
     <TextView
         android:id="@+id/link_shop_name"
@@ -357,7 +354,6 @@
         tools:text="магазинчик"
         tools:visibility="visible" />
 
-
     <TextView
         android:id="@+id/title_shop_name"
         style="@style/Text_medium"
@@ -368,14 +364,14 @@
         app:layout_constraintBottom_toTopOf="@+id/title_diameter"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_name"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_shop_name"
-            app:layout_constraintStart_toEndOf="@+id/title_shop_name"
-            app:layout_constraintTop_toTopOf="@+id/title_shop_name"
-            tools:text="Магазинчик" />
+    <TextView
+        android:id="@+id/shop_name"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_shop_name"
+        app:layout_constraintStart_toEndOf="@+id/title_shop_name"
+        app:layout_constraintTop_toTopOf="@+id/title_shop_name"
+        tools:text="Магазинчик" />
 
     <TextView
         android:id="@+id/title_diameter"
@@ -387,14 +383,14 @@
         app:layout_constraintBottom_toTopOf="@+id/title_weight"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_diameter"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_diameter"
-            app:layout_constraintStart_toEndOf="@+id/title_diameter"
-            app:layout_constraintTop_toTopOf="@+id/title_diameter"
-            tools:text="35 см" />
+    <TextView
+        android:id="@+id/shop_diameter"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_diameter"
+        app:layout_constraintStart_toEndOf="@+id/title_diameter"
+        app:layout_constraintTop_toTopOf="@+id/title_diameter"
+        tools:text="35 см" />
 
     <TextView
         android:id="@+id/title_weight"
@@ -406,14 +402,14 @@
         app:layout_constraintBottom_toTopOf="@id/title_sound"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_weight"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_weight"
-            app:layout_constraintStart_toEndOf="@+id/title_weight"
-            app:layout_constraintTop_toTopOf="@+id/title_weight"
-            tools:text="35 см" />
+    <TextView
+        android:id="@+id/shop_weight"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_weight"
+        app:layout_constraintStart_toEndOf="@+id/title_weight"
+        app:layout_constraintTop_toTopOf="@+id/title_weight"
+        tools:text="35 см" />
 
     <TextView
         android:id="@+id/title_sound"
@@ -425,14 +421,14 @@
         app:layout_constraintBottom_toTopOf="@+id/button_shop"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_sound"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_sound"
-            app:layout_constraintStart_toEndOf="@+id/title_sound"
-            app:layout_constraintTop_toTopOf="@+id/title_sound"
-            tools:text="35 см" />
+    <TextView
+        android:id="@+id/shop_sound"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_sound"
+        app:layout_constraintStart_toEndOf="@+id/title_sound"
+        app:layout_constraintTop_toTopOf="@+id/title_sound"
+        tools:text="35 см" />
 
     <Button
         android:id="@+id/button_shop"
@@ -449,6 +445,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <include layout="@layout/progress_view"/>
+    <include layout="@layout/progress_view" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

@@ -40,11 +40,11 @@ abstract class BaseInstrumentFragment : Fragment(),
     private val SCALE_BACK = 1f
 
     protected lateinit var progressViewModel: ProgressViewModel
-    private lateinit var mainFragmentViewModel: MainFragmentViewModel
+    protected lateinit var mainFragmentViewModel: MainFragmentViewModel
     private val soundLoaderUseCase: ISoundLoaderUseCase by KoinJavaComponent.inject(
         ISoundLoaderUseCase::class.java
     )
-    private val sharedPref: ISharedPrefHelper by KoinJavaComponent.inject(ISharedPrefHelper::class.java)
+    protected val sharedPref: ISharedPrefHelper by KoinJavaComponent.inject(ISharedPrefHelper::class.java)
     private var motionLayout: MotionLayout? = null
     private var imgClose: ImageView? = null
     private var imageInstrument: ImageView? = null
@@ -71,8 +71,11 @@ abstract class BaseInstrumentFragment : Fragment(),
         createShopOpenBlock()
         setInstrumentsAbout()
         createStopAllSoundsObserver()
-        view.findViewById<ImageView>(R.id.stop_all).setOnClickListener {
-            mainFragmentViewModel.isStopSound.value = mainFragmentViewModel.isStopSound.value
+        val stopAll = view.findViewById<ImageView>(R.id.stop_all)
+        stopAll?.run {
+            this.setOnClickListener {
+                mainFragmentViewModel.isStopSound.value = mainFragmentViewModel.isStopSound.value
+            }
         }
         Analytics.logEventPushWithParameter(
             OPEN_INSTRUMENT,

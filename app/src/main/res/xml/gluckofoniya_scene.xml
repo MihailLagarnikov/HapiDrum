@@ -134,6 +134,17 @@
             motion:layout_constraintTop_toBottomOf="@+id/motion_instrument" />
 
         <Constraint
+            android:id="@+id/extra_info"
+            style="@style/Text_medium"
+            android:layout_width="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/extra_unison_of_hearts"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/motion_instrument" />
+
+        <Constraint
             android:id="@+id/button_shop"
             style="@style/Text_medium"
             android:layout_width="wrap_content"
@@ -259,9 +270,9 @@
             style="@style/Text_medium"
             android:layout_width="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/sound_title"
-            motion:layout_constraintBottom_toTopOf="@+id/button_shop"
+            motion:layout_constraintBottom_toTopOf="@+id/extra_info"
             motion:layout_constraintStart_toStartOf="parent" />
 
         <Constraint
@@ -271,6 +282,17 @@
             motion:layout_constraintBottom_toBottomOf="@+id/title_sound"
             motion:layout_constraintStart_toEndOf="@+id/title_sound"
             motion:layout_constraintTop_toTopOf="@+id/title_sound" />
+
+        <Constraint
+            android:id="@+id/extra_info"
+            style="@style/Text_medium"
+            android:layout_width="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/extra_unison_of_hearts"
+            motion:layout_constraintBottom_toTopOf="@+id/button_shop"
+            motion:layout_constraintStart_toStartOf="parent" />
 
         <Constraint
             android:id="@+id/button_shop"
@@ -286,7 +308,6 @@
             android:textColor="@color/super_"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintStart_toStartOf="parent" />
-
     </ConstraintSet>
 
 </MotionScene>

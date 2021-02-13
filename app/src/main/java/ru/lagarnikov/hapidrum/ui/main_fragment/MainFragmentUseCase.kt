@@ -12,7 +12,8 @@ class MainFragmentUseCase(val sharedPrefHelper: ISharedPrefHelper) : IMainFragme
     private val listInstruments = arrayListOf<Int>(
         R.id.mainInstrument,
         R.id.tree,
-        R.id.unisonOfHearts
+        R.id.unisonOfHearts,
+        R.id.openSpace
     )
 
     override fun pressLeftNavButton(): Int {

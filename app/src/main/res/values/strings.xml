@@ -47,6 +47,13 @@
     <string name="weight_unison_of_hearts">1.6 кг</string>
     <string name="sound_unison_of_hearts">Akebono do 432Hz</string>
 
+    //open_space_insrumaent
+    <string name="open_space_name">Open space</string>
+    <string name="diameter_open_space">22 см</string>
+    <string name="weight_open_space">1.6 кг</string>
+    <string name="sound_open_space">C major 432Hz</string>
+    <string name="extra_unison_of_hearts">The glucophone has two tunings in one. The options are C major + akebono and C major + pygmy. Re-tuning in a minute without a tuner and knowledge of notes thanks to a specially designed circuit.</string>
+
     //top panel
     <string name="random">Random</string>
     <string name="onn">On</string>

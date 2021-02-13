@@ -6,29 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:layoutDescription="@xml/main_instrument_scene"
+    app:layoutDescription="@xml/gluckofoniya_scene"
     tools:layoutDescription="@null">
-
-    <FrameLayout
-        android:id="@+id/snow_frame"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/snowflake" />
-
-    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_instrument"
@@ -47,8 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_tree" />
-
+            app:srcCompat="@drawable/open_space" />
 
         <ImageView
             android:id="@+id/hapi_drum_a"
@@ -60,60 +38,47 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/a_tree"
-            tools:visibility="visible" />
+            app:srcCompat="@drawable/open_space_a"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_b"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="@dimen/anim_elevation"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/b_tree"
-            tools:visibility="invisible" />
+            app:srcCompat="@drawable/open_space_b"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="@dimen/anim_elevation"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/c_tree"
-            tools:visibility="visible" />
-
-        <ImageView
-            android:id="@+id/hapi_drum_c_fake"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/anim_elevation"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/c"
-            tools:visibility="visible" />
+            app:srcCompat="@drawable/open_space_c"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:elevation="@dimen/anim_elevation"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/d_tree" />
+            app:srcCompat="@drawable/open_space_d"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_e"
@@ -125,7 +90,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/e_tree" />
+            app:srcCompat="@drawable/open_space_e"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_f"
@@ -135,10 +101,12 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/f_tree"
-            tools:visibility="visible" />
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/open_space_f"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_g"
@@ -150,8 +118,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/g_tree"
-            tools:visibility="visible" />
+            app:srcCompat="@drawable/open_space_g"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_h"
@@ -163,27 +131,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/h_tree"
-            tools:visibility="gone" />
+            app:srcCompat="@drawable/open_space_h"
+            tools:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/hapi_drum_zero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/anim_elevation"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/zero_tree" />
 
         <Button
             android:id="@+id/button_zero"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="@dimen/zero_sound_button"
+            android:layout_height="@dimen/zero_sound_button"
+            android:layout_marginBottom="16dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -208,10 +164,10 @@
 
         <Button
             android:id="@+id/button_a"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="16dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:rotation="-45"
@@ -221,34 +177,34 @@
 
         <Button
             android:id="@+id/button_b"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_smal_sound_button"
+            android:layout_marginEnd="16dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
-            app:layout_constraintBottom_toTopOf="@+id/button_zero"
-            app:layout_constraintEnd_toStartOf="@+id/button_zero" />
+            app:layout_constraintBottom_toBottomOf="@+id/button_zero"
+            app:layout_constraintEnd_toStartOf="@+id/button_zero"
+            app:layout_constraintTop_toTopOf="@+id/button_zero" />
 
         <Button
             android:id="@+id/button_c"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="35dp"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="8dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:rotation="45"
             android:text="Button"
-            app:layout_constraintEnd_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/button_zero" />
+            app:layout_constraintBottom_toTopOf="@+id/button_zero"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
         <Button
             android:id="@+id/button_d"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="145dp"
+            android:layout_width="@dimen/height_smal_sound_button"
+            android:layout_height="@dimen/weight_smal_sound_button"
+            android:layout_marginBottom="16dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
@@ -258,35 +214,34 @@
 
         <Button
             android:id="@+id/button_e"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="55dp"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="6dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:rotation="135"
             android:text="Button"
             app:layout_constraintBottom_toTopOf="@+id/button_zero"
-            app:layout_constraintStart_toStartOf="@+id/button_zero" />
+            app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
         <Button
             android:id="@+id/button_f"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="@dimen/weight_smal_sound_button"
+            android:layout_height="@dimen/height_smal_sound_button"
+            android:layout_marginStart="16dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
-            app:layout_constraintStart_toEndOf="@+id/button_zero"
-            app:layout_constraintTop_toTopOf="@+id/button_zero" />
+            app:layout_constraintBottom_toBottomOf="@+id/button_zero"
+            app:layout_constraintStart_toEndOf="@+id/button_zero" />
 
         <Button
             android:id="@+id/button_g"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="80dp"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:rotation="225"
@@ -296,9 +251,9 @@
 
         <Button
             android:id="@+id/button_h"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="@dimen/height_smal_sound_button"
+            android:layout_height="@dimen/weight_smal_sound_button"
+            android:layout_marginTop="16dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
@@ -306,17 +261,30 @@
             app:layout_constraintTop_toBottomOf="@+id/button_zero" />
 
         <ImageView
-            android:id="@+id/stop_all"
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_g"
+            app:layout_constraintTop_toBottomOf="@+id/felt"
+            app:srcCompat="@drawable/btn_stop_all" />
+
+        <ImageView
+            android:id="@+id/felt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
-            android:alpha="0.2"
+            android:alpha="0.6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_g"
             app:layout_constraintTop_toBottomOf="@+id/button_g"
-            app:srcCompat="@drawable/btn_stop_all" />
+            app:srcCompat="@drawable/ic_sticks" />
 
         <ImageView
             android:id="@+id/image_close"
@@ -388,7 +356,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/instrument_name"
-        tools:text="магазинчик" />
+        tools:text="магазинчик"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/title_shop_name"
@@ -452,9 +421,9 @@
         style="@style/Text_medium"
         android:layout_width="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/sound_title"
-        app:layout_constraintBottom_toTopOf="@+id/button_shop"
+        app:layout_constraintBottom_toTopOf="@+id/extra_info"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -466,6 +435,17 @@
         app:layout_constraintTop_toTopOf="@+id/title_sound"
         tools:text="35 см" />
 
+    <TextView
+        android:id="@+id/extra_info"
+        style="@style/Text_medium"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/extra_unison_of_hearts"
+        app:layout_constraintBottom_toTopOf="@+id/button_shop"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Button
         android:id="@+id/button_shop"
         style="@style/Text_medium"
@@ -475,8 +455,6 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/button_shop"
         android:drawableEnd="@drawable/ic_arrow_right_button"
-        android:gravity="center"
-        android:minWidth="230dp"
         android:text="@string/shop_button"
         android:textAllCaps="false"
         android:textColor="@color/super_"

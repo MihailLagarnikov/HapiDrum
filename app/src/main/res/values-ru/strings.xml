@@ -33,7 +33,14 @@
     <string name="unison_of_hearts_name">Унисон сердец</string>
     <string name="diameter_unison_of_hearts">22 см</string>
     <string name="weight_unison_of_hearts">1.6 кг</string>
-    <string name="sound_unison_of_hearts">Акебоно до 432гц</string>
+    <string name="sound_unison_of_hearts">До мажор 432гц</string>
+    <string name="extra_unison_of_hearts">У глюкофона два строя в одном. Возможные варианты: до мажор + акеbono и до мажор + pygmy. Перенастройка за минуту без тюнера и знания нот благодаря специально разработанной схеме.</string>
+
+    //open_space_insrumaent
+    <string name="open_space_name">Открытый космос</string>
+    <string name="diameter_open_space">22 см</string>
+    <string name="weight_open_space">1.6 кг</string>
+    <string name="sound_open_space">C major 432Hz</string>
 
 
     //top panel

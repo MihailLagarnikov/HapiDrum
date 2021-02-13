@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/motion_instrument"
-    app:layoutDescription="@xml/main_instrument_scene"
-    tools:layoutDescription="@null"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+    android:orientation="vertical"
+    app:layoutDescription="@xml/gluckofoniya_scene"
+    tools:layoutDescription="@null">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_instrument"
@@ -28,8 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono" />
-
+            app:srcCompat="@drawable/unison_of_hearts" />
 
         <ImageView
             android:id="@+id/hapi_drum_a"
@@ -41,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono_a"
+            app:srcCompat="@drawable/unison_of_hearts_a"
             tools:visibility="gone" />
 
         <ImageView
@@ -54,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono_b"
+            app:srcCompat="@drawable/unison_of_hearts_b"
             tools:visibility="gone" />
 
         <ImageView
@@ -67,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono_c"
+            app:srcCompat="@drawable/unison_of_hearts_c"
             tools:visibility="gone" />
 
         <ImageView
@@ -80,8 +77,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono_d"
-            tools:visibility="gone"/>
+            app:srcCompat="@drawable/unison_of_hearts_d"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_e"
@@ -93,8 +90,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono_e"
-            tools:visibility="gone"/>
+            app:srcCompat="@drawable/unison_of_hearts_e"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_f"
@@ -108,7 +105,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/akibono_f"
+            app:srcCompat="@drawable/unison_of_hearts_f"
             tools:visibility="gone" />
 
         <ImageView
@@ -121,8 +118,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono_g"
-            tools:visibility="gone"/>
+            app:srcCompat="@drawable/unison_of_hearts_g"
+            tools:visibility="gone" />
 
         <ImageView
             android:id="@+id/hapi_drum_h"
@@ -134,10 +131,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/akibono_h"
+            app:srcCompat="@drawable/unison_of_hearts_h"
             tools:visibility="gone" />
-
-
 
         <Button
             android:id="@+id/button_zero"
@@ -184,7 +179,7 @@
             android:id="@+id/button_b"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_smal_sound_button"
-            android:layout_marginEnd="35dp"
+            android:layout_marginEnd="40dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
@@ -234,7 +229,7 @@
             android:id="@+id/button_f"
             android:layout_width="@dimen/weight_smal_sound_button"
             android:layout_height="@dimen/height_smal_sound_button"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="40dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
@@ -258,7 +253,7 @@
             android:id="@+id/button_h"
             android:layout_width="@dimen/height_smal_sound_button"
             android:layout_height="@dimen/weight_smal_sound_button"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="50dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
@@ -266,28 +261,41 @@
             app:layout_constraintTop_toBottomOf="@+id/button_zero" />
 
         <ImageView
-            android:id="@+id/stop_all"
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_g"
+            app:layout_constraintTop_toBottomOf="@+id/felt"
+            app:srcCompat="@drawable/btn_stop_all" />
+
+        <ImageView
+            android:id="@+id/felt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
-            android:alpha="0.2"
+            android:alpha="0.6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_g"
             app:layout_constraintTop_toBottomOf="@+id/button_g"
-            app:srcCompat="@drawable/btn_stop_all" />
+            app:srcCompat="@drawable/ic_sticks" />
 
         <ImageView
             android:id="@+id/image_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/top_panel_height_max"
             android:elevation="2dp"
             android:visibility="gone"
-            android:layout_marginTop="@dimen/top_panel_height_max"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_close"
             tools:visibility="visible" />
 
@@ -306,7 +314,6 @@
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <ImageView
         android:id="@+id/img_shop"
@@ -333,11 +340,11 @@
         android:id="@+id/link_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:src="@drawable/ic_line_stroke"
-        app:layout_constraintStart_toStartOf="@+id/link_shop_name"
         app:layout_constraintEnd_toEndOf="@id/link_shop_name"
-        app:layout_constraintTop_toBottomOf="@+id/link_shop_name"
-        android:layout_marginTop="2dp"/>
+        app:layout_constraintStart_toStartOf="@+id/link_shop_name"
+        app:layout_constraintTop_toBottomOf="@+id/link_shop_name" />
 
     <TextView
         android:id="@+id/link_shop_name"
@@ -352,7 +359,6 @@
         tools:text="магазинчик"
         tools:visibility="visible" />
 
-
     <TextView
         android:id="@+id/title_shop_name"
         style="@style/Text_medium"
@@ -363,14 +369,14 @@
         app:layout_constraintBottom_toTopOf="@+id/title_diameter"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_name"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_shop_name"
-            app:layout_constraintStart_toEndOf="@+id/title_shop_name"
-            app:layout_constraintTop_toTopOf="@+id/title_shop_name"
-            tools:text="Магазинчик" />
+    <TextView
+        android:id="@+id/shop_name"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_shop_name"
+        app:layout_constraintStart_toEndOf="@+id/title_shop_name"
+        app:layout_constraintTop_toTopOf="@+id/title_shop_name"
+        tools:text="Магазинчик" />
 
     <TextView
         android:id="@+id/title_diameter"
@@ -382,14 +388,14 @@
         app:layout_constraintBottom_toTopOf="@+id/title_weight"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_diameter"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_diameter"
-            app:layout_constraintStart_toEndOf="@+id/title_diameter"
-            app:layout_constraintTop_toTopOf="@+id/title_diameter"
-            tools:text="35 см" />
+    <TextView
+        android:id="@+id/shop_diameter"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_diameter"
+        app:layout_constraintStart_toEndOf="@+id/title_diameter"
+        app:layout_constraintTop_toTopOf="@+id/title_diameter"
+        tools:text="35 см" />
 
     <TextView
         android:id="@+id/title_weight"
@@ -401,14 +407,14 @@
         app:layout_constraintBottom_toTopOf="@id/title_sound"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_weight"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_weight"
-            app:layout_constraintStart_toEndOf="@+id/title_weight"
-            app:layout_constraintTop_toTopOf="@+id/title_weight"
-            tools:text="35 см" />
+    <TextView
+        android:id="@+id/shop_weight"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_weight"
+        app:layout_constraintStart_toEndOf="@+id/title_weight"
+        app:layout_constraintTop_toTopOf="@+id/title_weight"
+        tools:text="35 см" />
 
     <TextView
         android:id="@+id/title_sound"
@@ -417,17 +423,28 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="24dp"
         android:text="@string/sound_title"
-        app:layout_constraintBottom_toTopOf="@+id/button_shop"
+        app:layout_constraintBottom_toTopOf="@+id/extra_info"
         app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/shop_sound"
-            style="@style/Text_bold"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/title_sound"
-            app:layout_constraintStart_toEndOf="@+id/title_sound"
-            app:layout_constraintTop_toTopOf="@+id/title_sound"
-            tools:text="35 см" />
+    <TextView
+        android:id="@+id/shop_sound"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_sound"
+        app:layout_constraintStart_toEndOf="@+id/title_sound"
+        app:layout_constraintTop_toTopOf="@+id/title_sound"
+        tools:text="35 см" />
+
+    <TextView
+        android:id="@+id/extra_info"
+        style="@style/Text_medium"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/extra_unison_of_hearts"
+        app:layout_constraintBottom_toTopOf="@+id/button_shop"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_shop"
@@ -444,6 +461,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <include layout="@layout/progress_view"/>
+    <include layout="@layout/progress_view" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

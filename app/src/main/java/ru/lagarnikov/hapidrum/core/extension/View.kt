@@ -29,6 +29,29 @@ fun ImageView.setPress(isOn: Boolean) {
     }
 }
 
+fun ImageView.setPressDrawable(isPress: Boolean) {
+    val drawable = when (this.id) {
+        R.id.felt -> {
+            if (isPress) {
+                R.drawable.ic_sticks_pressed
+            } else {
+                R.drawable.ic_sticks
+            }
+        }
+        R.id.handle -> {
+            if (isPress) {
+                R.drawable.ic_hand_right_pressed_alternativ
+            } else {
+                R.drawable.ic_hand_right
+            }
+        }
+        else -> null
+    }
+    if (drawable != null) {
+        this.setImageDrawable(this.context.getDrawable(drawable))
+    }
+}
+
 fun TextView.setPress(isOn: Boolean) {
     if (isOn) {
         this.setTextColor(this.context.resources.getColor(R.color.pressed_color))
