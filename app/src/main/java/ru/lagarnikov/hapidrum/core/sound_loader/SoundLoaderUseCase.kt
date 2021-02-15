@@ -20,6 +20,12 @@ class SoundLoaderUseCase(
     private val PAUSE_TIME = 100L
     override val isLoaded = MutableLiveData<Boolean>()
 
+    override val countOfSampleInstrument =  MutableLiveData<Int>()
+
+    init {
+        countOfSampleInstrument.value = 1
+    }
+
     override suspend fun loadSounds(
         insrtument: Instruments,
         fileDir: File,
@@ -29,7 +35,7 @@ class SoundLoaderUseCase(
         for (instrumentSound in insrtument.sounds) {
             startLoad(instrumentSound, storage, fileDir).addOnSuccessListener {
                 listState--
-                Log.d("asqs", "yyy " + instrumentSound.instrumentName)
+                //Log.d("asqs", "yyy " + instrumentSound.instrumentName)
             }.addOnFailureListener {
                 MyApp.crashlytics.recordException(RuntimeException("loadSounds Failure instrumentSound - " + instrumentSound.instrumentName))
             }

@@ -71,6 +71,9 @@ class MainFragment : Fragment() {
         navigateInstrument(mainFragmentViewModel.getStartInstrument())
 
         btn_right_instrument.setOnClickListener {
+            randomGenerator?.press(false)
+            random_img.setPress(false)
+            random_text.setPress(false)
             Analytics.logEventPushWithParameter(
                 CLICK_NAVIGATE,
                 FirebaseAnalytics.Param.ITEM_ID,
@@ -79,6 +82,9 @@ class MainFragment : Fragment() {
             navigateInstrument(mainFragmentViewModel.pressRightNavButton())
         }
         btn_left_instrument.setOnClickListener {
+            randomGenerator?.press(false)
+            random_img.setPress(false)
+            random_text.setPress(false)
             Analytics.logEventPushWithParameter(
                 CLICK_NAVIGATE,
                 FirebaseAnalytics.Param.ITEM_ID,

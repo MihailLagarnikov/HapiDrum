@@ -5,6 +5,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
 interface ISoundLoaderUseCase {
+    val countOfSampleInstrument:MutableLiveData<Int>
     val isLoaded: MutableLiveData<Boolean>
     suspend fun loadSounds(insrtument: Instruments, fileDir: File, storage: FirebaseStorage)
     suspend fun loadSounds(soundFon: SoundFons, fileDir: File, storage: FirebaseStorage)

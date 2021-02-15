@@ -7,8 +7,8 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.core.content.PermissionChecker
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
@@ -76,13 +76,21 @@ class MainActivity : AppCompatActivity(), FilePathLoad {
         } else {
             null
         }
+        dialog?.isCancelable = false
         dialog?.show(supportFragmentManager, "tag")
+        soundLoaderUseCase.countOfSampleInstrument.value = Instruments.values().size
+        var oldCount = Instruments.values().size
+        var allFileLoaded = true
         for (instrument in Instruments.values()) {
             if (sharedPref.loadBoolean(
                     BuildConfig.VERSION_NAME + instrument.sounds.get(0).instrumentName,
                     false
                 )
-            ) continue
+            ) {
+                --oldCount
+                soundLoaderUseCase.countOfSampleInstrument.value = (oldCount)
+                continue
+            }
             soundLoaderUseCase.isLoaded.value = false
             GlobalScope.launch(Dispatchers.Main) {
                 if (!sharedPref.loadBoolean(BuildConfig.VERSION_NAME + instrument.name, false)) {
@@ -90,13 +98,21 @@ class MainActivity : AppCompatActivity(), FilePathLoad {
                         soundLoaderUseCase.loadSounds(instrument, getFileForLoading(), storage)
                     }
                     job.await()
+                    allFileLoaded = false
+                    --oldCount
+                    soundLoaderUseCase.countOfSampleInstrument.value = (oldCount)
                     soundLoaderUseCase.isLoaded.value = true
-                    dialog?.dismiss()
-                    Log.d("asqs", "finish")
-                    Snackbar.make(container, R.string.loading_exit, Snackbar.LENGTH_LONG).show()
                 }
             }
         }
+        soundLoaderUseCase.countOfSampleInstrument.observe(this, Observer {
+            if (it <= 0 && !allFileLoaded){
+                Snackbar.make(container, R.string.loading_exit, Snackbar.LENGTH_LONG).show()
+            }
+            if (it <= 0){
+                dialog?.dismiss()
+            }
+        })
         loadFonMusick()
     }
 
@@ -109,11 +125,15 @@ class MainActivity : AppCompatActivity(), FilePathLoad {
             ) continue
             soundLoaderUseCase.isLoaded.value = false
             GlobalScope.launch(Dispatchers.Main) {
-                if (sharedPref.loadBoolean(BuildConfig.VERSION_NAME + soundFon.name, false)) {
+                if (!sharedPref.loadBoolean(BuildConfig.VERSION_NAME + soundFon.name, false)) {
                     val job = GlobalScope.async {
                         soundLoaderUseCase.loadSounds(soundFon, getFileForLoading(), storage)
                     }
                     job.await()
+                    sharedPref.saveBoolean(
+                        BuildConfig.VERSION_NAME + soundFon.sounds.get(0).instrumentName,
+                        true
+                    )
                     soundLoaderUseCase.isLoaded.value = true
                 }
             }
