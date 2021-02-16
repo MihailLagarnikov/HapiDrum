@@ -32,7 +32,6 @@ import java.io.File
 
 class MainActivity : AppCompatActivity(), FilePathLoad {
 
-    private val PERMISSION_REQUEST_CODE = 443
     private val soundLoaderUseCase: ISoundLoaderUseCase by KoinJavaComponent.inject(
         ISoundLoaderUseCase::class.java
     )
@@ -48,11 +47,7 @@ class MainActivity : AppCompatActivity(), FilePathLoad {
         FirebaseApp.initializeApp(this)
         storage = FirebaseStorage.getInstance()
         sharedPref.init(getPreferences(Context.MODE_PRIVATE))
-        if (!hasPermissions()) {
-            requestPerms()
-        } else {
-            loadSound()
-        }
+        loadSound()
         if (intent != null) {
             onNewIntent(intent)
         }
@@ -137,51 +132,6 @@ class MainActivity : AppCompatActivity(), FilePathLoad {
                     soundLoaderUseCase.isLoaded.value = true
                 }
             }
-        }
-    }
-
-    private fun hasPermissions(): Boolean {
-        val permissions =
-            arrayOf(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-        for (perms in permissions) {
-            val res = PermissionChecker.checkCallingOrSelfPermission(this, perms)
-            if (res != PackageManager.PERMISSION_GRANTED) {
-                return false
-            }
-        }
-        return true
-    }
-
-    private fun requestPerms() {
-        val permissions =
-            arrayOf(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(permissions, PERMISSION_REQUEST_CODE)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        var allowed = true
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE -> for (res in grantResults) {
-                allowed = allowed && res == PackageManager.PERMISSION_GRANTED
-            }
-            else -> allowed = false
-        }
-        if (allowed) {
-            loadSound()
-        } else {
-            Snackbar.make(container, R.string.has_not_permission, Snackbar.LENGTH_LONG)
         }
     }
 
