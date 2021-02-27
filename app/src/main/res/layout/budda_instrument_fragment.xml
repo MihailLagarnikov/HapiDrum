@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motion_instrument"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layoutDescription="@xml/main_instrument_scene"
+    tools:layoutDescription="@null">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_instrument"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/hapi_drum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda" />
+
+
+        <ImageView
+            android:id="@+id/hapi_drum_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda_a"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/hapi_drum_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda_b"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/hapi_drum_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda_c"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/hapi_drum_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda_d"
+            tools:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/hapi_drum_e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda_e"
+            tools:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/hapi_drum_f"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/budda_f"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/hapi_drum_g"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda_g"
+            tools:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/hapi_drum_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/budda_h"
+            tools:visibility="visible" />
+
+
+
+        <Button
+            android:id="@+id/button_zero"
+            android:layout_width="@dimen/zero_sound_button"
+            android:layout_height="@dimen/zero_sound_button"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@android:string/VideoView_error_button" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.44" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <Button
+            android:id="@+id/button_a"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:rotation="-45"
+            android:text="@android:string/VideoView_error_button"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/button_zero" />
+
+        <Button
+            android:id="@+id/button_b"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_smal_sound_button"
+            android:layout_marginEnd="10dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="@+id/button_zero"
+            app:layout_constraintEnd_toStartOf="@+id/button_zero"
+            app:layout_constraintTop_toTopOf="@+id/button_zero" />
+
+        <Button
+            android:id="@+id/button_c"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginEnd="17dp"
+            android:layout_marginBottom="8dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:rotation="45"
+            android:text="Button"
+            app:layout_constraintBottom_toTopOf="@+id/button_zero"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+        <Button
+            android:id="@+id/button_d"
+            android:layout_width="@dimen/height_smal_sound_button"
+            android:layout_height="@dimen/weight_smal_sound_button"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:text="Button"
+            app:layout_constraintBottom_toTopOf="@+id/button_zero"
+            app:layout_constraintEnd_toEndOf="@+id/button_zero"
+            app:layout_constraintStart_toStartOf="@+id/button_zero" />
+
+        <Button
+            android:id="@+id/button_e"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="6dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:rotation="135"
+            android:text="Button"
+            app:layout_constraintBottom_toTopOf="@+id/button_zero"
+            app:layout_constraintStart_toStartOf="@+id/guideline3" />
+
+        <Button
+            android:id="@+id/button_f"
+            android:layout_width="@dimen/weight_smal_sound_button"
+            android:layout_height="@dimen/height_smal_sound_button"
+            android:layout_marginStart="10dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="@+id/button_zero"
+            app:layout_constraintStart_toEndOf="@+id/button_zero" />
+
+        <Button
+            android:id="@+id/button_g"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:rotation="225"
+            android:text="Button"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/button_zero" />
+
+        <Button
+            android:id="@+id/button_h"
+            android:layout_width="@dimen/height_smal_sound_button"
+            android:layout_height="@dimen/weight_smal_sound_button"
+            android:layout_marginTop="10dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="@+id/button_zero"
+            app:layout_constraintTop_toBottomOf="@+id/button_zero" />
+
+        <ImageView
+            android:id="@+id/stop_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0.2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_g"
+            app:layout_constraintTop_toBottomOf="@+id/button_g"
+            app:srcCompat="@drawable/btn_stop_all" />
+
+        <ImageView
+            android:id="@+id/image_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/top_panel_height_max"
+            android:elevation="2dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_close"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_close"
+            style="@style/Text_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:elevation="2dp"
+            android:text="@string/close"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/image_close"
+            app:layout_constraintStart_toEndOf="@+id/image_close"
+            app:layout_constraintTop_toTopOf="@+id/image_close"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/img_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ic_icon_for_shop"
+        app:layout_constraintBottom_toBottomOf="@+id/instrument_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/instrument_name" />
+
+    <TextView
+        android:id="@+id/instrument_name"
+        style="@style/H2"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/title_shop_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_shop"
+        tools:text="Горная Река" />
+
+    <ImageView
+        android:id="@+id/link_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/ic_line_stroke"
+        app:layout_constraintEnd_toEndOf="@id/link_shop_name"
+        app:layout_constraintStart_toStartOf="@+id/link_shop_name"
+        app:layout_constraintTop_toBottomOf="@+id/link_shop_name" />
+
+    <TextView
+        android:id="@+id/link_shop_name"
+        style="@style/Text_medium"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instrument_name"
+        tools:text="магазинчик"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/title_shop_name"
+        style="@style/Text_medium"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/shop_title"
+        app:layout_constraintBottom_toTopOf="@+id/title_diameter"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/shop_name"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_shop_name"
+        app:layout_constraintStart_toEndOf="@+id/title_shop_name"
+        app:layout_constraintTop_toTopOf="@+id/title_shop_name"
+        tools:text="Магазинчик" />
+
+    <TextView
+        android:id="@+id/title_diameter"
+        style="@style/Text_medium"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/diameter_title"
+        app:layout_constraintBottom_toTopOf="@+id/title_weight"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/shop_diameter"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_diameter"
+        app:layout_constraintStart_toEndOf="@+id/title_diameter"
+        app:layout_constraintTop_toTopOf="@+id/title_diameter"
+        tools:text="35 см" />
+
+    <TextView
+        android:id="@+id/title_weight"
+        style="@style/Text_medium"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="6dp"
+        android:text="@string/weight_title"
+        app:layout_constraintBottom_toTopOf="@id/title_sound"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/shop_weight"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_weight"
+        app:layout_constraintStart_toEndOf="@+id/title_weight"
+        app:layout_constraintTop_toTopOf="@+id/title_weight"
+        tools:text="35 см" />
+
+    <TextView
+        android:id="@+id/title_sound"
+        style="@style/Text_medium"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/sound_title"
+        app:layout_constraintBottom_toTopOf="@+id/button_shop"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/shop_sound"
+        style="@style/Text_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_sound"
+        app:layout_constraintStart_toEndOf="@+id/title_sound"
+        app:layout_constraintTop_toTopOf="@+id/title_sound"
+        tools:text="35 см" />
+
+    <Button
+        android:id="@+id/button_shop"
+        style="@style/Text_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_shop"
+        android:drawableEnd="@drawable/ic_arrow_right_button"
+        android:text="@string/shop_button"
+        android:textAllCaps="false"
+        android:textColor="@color/super_"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <include layout="@layout/progress_view" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

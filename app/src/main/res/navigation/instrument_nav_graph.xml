@@ -25,4 +25,12 @@
         android:id="@+id/openSpace"
         android:name="ru.lagarnikov.hapidrum.ui.instruments.Gluckofoniya.OpenSpace"
         android:label="OpenSpace" />
+    <fragment
+        android:id="@+id/budda"
+        android:name="ru.lagarnikov.hapidrum.ui.instruments.steklov.Budda"
+        android:label="Budda" />
+    <fragment
+        android:id="@+id/budda_test"
+        android:name="ru.lagarnikov.hapidrum.ui.instruments.steklov.Budda_test"
+        android:label="Budda_test" />
 </navigation>

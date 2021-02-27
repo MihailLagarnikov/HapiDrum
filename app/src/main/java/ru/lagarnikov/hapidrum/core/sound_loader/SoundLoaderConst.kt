@@ -101,6 +101,45 @@ const val OPEN_SPACE_FELT_F_LOCAL = "f_OPEN_SPACE_felt_"
 const val OPEN_SPACE_FELT_G_LOCAL = "g_OPEN_SPACE_felt_"
 const val OPEN_SPACE_FELT_H_LOCAL = "h_OPEN_SPACE_felt_"
 
+
+const val BUDDA_ = "budda_instrument"
+const val BUDDA_A_ = "budda_a.mp3"
+const val BUDDA_B_ = "budda_b.mp3"
+const val BUDDA_C_ = "budda_c.mp3"
+const val BUDDA_D_ = "budda_d.mp3"
+const val BUDDA_E_ = "budda_e.mp3"
+const val BUDDA_F_ = "budda_f.mp3"
+const val BUDDA_G_ = "budda_g.mp3"
+const val BUDDA_H_ = "budda_h.mp3"
+
+const val BUDDA_A_LOCAL = "a_BUDDA_"
+const val BUDDA_B_LOCAL = "b_BUDDA_"
+const val BUDDA_C_LOCAL = "c_BUDDA_"
+const val BUDDA_D_LOCAL = "d_BUDDA_"
+const val BUDDA_E_LOCAL = "e_BUDDA_"
+const val BUDDA_F_LOCAL = "f_BUDDA_"
+const val BUDDA_G_LOCAL = "g_BUDDA_"
+const val BUDDA_H_LOCAL = "h_BUDDA_"
+
+const val BUDDA_TEST_ = "budda_instrument_test"
+const val BUDDA_TEST_A_ = "budda_test_a.mp3"
+const val BUDDA_TEST_B_ = "budda_test_b.mp3"
+const val BUDDA_TEST_C_ = "budda_test_c.mp3"
+const val BUDDA_TEST_D_ = "budda_test_d.mp3"
+const val BUDDA_TEST_E_ = "budda_test_e.mp3"
+const val BUDDA_TEST_F_ = "budda_test_f.mp3"
+const val BUDDA_TEST_G_ = "budda_test_g.mp3"
+const val BUDDA_TEST_H_ = "budda_test_h.mp3"
+
+const val BUDDA_TEST_A_LOCAL = "a_BUDDA_TEST_"
+const val BUDDA_TEST_B_LOCAL = "b_BUDDA_TEST_"
+const val BUDDA_TEST_C_LOCAL = "c_BUDDA_TEST_"
+const val BUDDA_TEST_D_LOCAL = "d_BUDDA_TEST_"
+const val BUDDA_TEST_E_LOCAL = "e_BUDDA_TEST_"
+const val BUDDA_TEST_F_LOCAL = "f_BUDDA_TEST_"
+const val BUDDA_TEST_G_LOCAL = "g_BUDDA_TEST_"
+const val BUDDA_TEST_H_LOCAL = "h_BUDDA_TEST_"
+
 val MAIN_SOUNDS_ = arrayListOf<InstrumentSound>(
     InstrumentSound(MAIN_, A_, A_LOCAL, EXT_WAV),
     InstrumentSound(MAIN_, B_, B_LOCAL, EXT_WAV),
@@ -197,10 +236,34 @@ val OPEN_SPACE_SOUNDS_FELT_ = arrayListOf<InstrumentSound>(
     InstrumentSound(OPEN_SPACE_FELT_, OPEN_SPACE_FELT_H_, OPEN_SPACE_FELT_H_LOCAL, EXT_MP3)
 )
 
+val BUDDA_SOUNDS_ = arrayListOf<InstrumentSound>(
+    InstrumentSound(BUDDA_, BUDDA_A_, BUDDA_A_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_, BUDDA_B_, BUDDA_B_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_, BUDDA_C_, BUDDA_C_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_, BUDDA_D_, BUDDA_D_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_, BUDDA_E_, BUDDA_E_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_, BUDDA_F_, BUDDA_F_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_, BUDDA_G_, BUDDA_G_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_, BUDDA_H_, BUDDA_H_LOCAL, EXT_MP3)
+)
+
+val BUDDA_TEST_SOUNDS_ = arrayListOf<InstrumentSound>(
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_A_, BUDDA_TEST_A_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_B_, BUDDA_TEST_B_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_C_, BUDDA_TEST_C_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_D_, BUDDA_TEST_D_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_E_, BUDDA_TEST_E_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_F_, BUDDA_TEST_F_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_G_, BUDDA_TEST_G_LOCAL, EXT_MP3),
+    InstrumentSound(BUDDA_TEST_, BUDDA_TEST_H_, BUDDA_TEST_H_LOCAL, EXT_MP3)
+)
+
 enum class Instruments(val sounds: ArrayList<InstrumentSound>) {
     MAIN(MAIN_SOUNDS_),
     UNISON_OF_HEARTS(UNISON_OF_HEARTS_SOUNDS_),
     UNISON_OF_HEARTS_FELT(UNISON_OF_HEARTS_SOUNDS_FELT_),
     OPEN_SPACE(OPEN_SPACE_SOUNDS_),
-    OPEN_SPACE_FELT(OPEN_SPACE_SOUNDS_FELT_)
+    OPEN_SPACE_FELT(OPEN_SPACE_SOUNDS_FELT_),
+    BUDDA_SOUNDS(BUDDA_SOUNDS_),
+    BUDDA_TEST_SOUNDS(BUDDA_TEST_SOUNDS_)
 }

@@ -28,6 +28,8 @@
     <string name="url_2smallPixels" translatable="false">https://translate.google.com/</string>
     <string name="shop_gluckofoniya" translatable="false">Gluckofoniya</string>
     <string name="url_gluckofoniya" translatable="false">https://vk.com/gluckofoniya/</string>
+    <string name="shop_steklov" translatable="false">Мастерская звука "Стеклов"</string>
+    <string name="url_steklov" translatable="false">https://vk.com/gluksteklov</string>
     <string name="shop_title_2smallPixels">Developer:</string>
     <string name="weight_title_2smallPixels">Happy New Year and Merry Christmas!</string>
     <string name="rate_2smallPixels">Rate app</string>
@@ -53,6 +55,12 @@
     <string name="weight_open_space">1.6 кг</string>
     <string name="sound_open_space">C major 432Hz</string>
     <string name="extra_unison_of_hearts">The glucophone has two tunings in one. The options are C major + akebono and C major + pygmy. Re-tuning in a minute without a tuner and knowledge of notes thanks to a specially designed circuit.</string>
+
+    //budda_insrumaent
+    <string name="budda_name">Meditation</string>
+    <string name="diameter_budda">22 cm</string>
+    <string name="weight_budda">1.6 kg</string>
+    <string name="sound_budda">La Minor</string>
 
     //top panel
     <string name="random">Random</string>

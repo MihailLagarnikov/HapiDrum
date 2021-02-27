@@ -42,6 +42,12 @@
     <string name="weight_open_space">1.6 кг</string>
     <string name="sound_open_space">До мажор 432гц</string>
 
+    //budda_insrumaent
+    <string name="budda_name">Медитация</string>
+    <string name="diameter_budda">22 см</string>
+    <string name="weight_budda">1.6 кг</string>
+    <string name="sound_budda">Ля минор</string>
+
 
     //top panel
     <string name="random">Рандом</string>

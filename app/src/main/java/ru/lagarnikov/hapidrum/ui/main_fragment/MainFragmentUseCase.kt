@@ -13,7 +13,9 @@ class MainFragmentUseCase(val sharedPrefHelper: ISharedPrefHelper) : IMainFragme
         R.id.mainInstrument,
         R.id.tree,
         R.id.unisonOfHearts,
-        R.id.openSpace
+        R.id.openSpace,
+        R.id.budda,
+        R.id.budda_test
     )
 
     override fun pressLeftNavButton(): Int {
