@@ -26,8 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda" />
-
+            app:srcCompat="@drawable/night_flower" />
 
         <ImageView
             android:id="@+id/hapi_drum_a"
@@ -39,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda_a"
+            app:srcCompat="@drawable/night_flower_a"
             tools:visibility="gone" />
 
         <ImageView
@@ -52,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda_b"
+            app:srcCompat="@drawable/night_flower_b"
             tools:visibility="gone" />
 
         <ImageView
@@ -65,7 +64,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda_c"
+            app:srcCompat="@drawable/night_flower_c"
             tools:visibility="gone" />
 
         <ImageView
@@ -78,7 +77,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda_d"
+            app:srcCompat="@drawable/night_flower_d"
             tools:visibility="gone"/>
 
         <ImageView
@@ -91,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda_e"
+            app:srcCompat="@drawable/night_flower_e"
             tools:visibility="gone"/>
 
         <ImageView
@@ -106,7 +105,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/budda_f"
+            app:srcCompat="@drawable/night_flower_f"
             tools:visibility="gone" />
 
         <ImageView
@@ -119,7 +118,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda_g"
+            app:srcCompat="@drawable/night_flower_g"
             tools:visibility="gone"/>
 
         <ImageView
@@ -132,8 +131,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/budda_h"
-            tools:visibility="visible" />
+            app:srcCompat="@drawable/night_flower_h"
+            tools:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/hapi_drum_i"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/night_flower_i"
+            tools:visibility="gone" />
 
         <Button
             android:id="@+id/button_zero"
@@ -165,7 +177,7 @@
             android:id="@+id/button_a"
             android:layout_width="@dimen/weight_big_sound_button"
             android:layout_height="@dimen/height_big_sound_button"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="16dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
@@ -178,9 +190,11 @@
             android:id="@+id/button_b"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_smal_sound_button"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="30dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
+            android:rotation="15"
             android:text="Button"
             app:layout_constraintBottom_toBottomOf="@+id/button_zero"
             app:layout_constraintEnd_toStartOf="@+id/button_zero"
@@ -190,20 +204,48 @@
             android:id="@+id/button_c"
             android:layout_width="@dimen/weight_big_sound_button"
             android:layout_height="@dimen/height_big_sound_button"
-            android:layout_marginEnd="17dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="35dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:rotation="45"
             android:text="Button"
-            app:layout_constraintBottom_toTopOf="@+id/button_zero"
+            app:layout_constraintBottom_toBottomOf="@+id/button_zero"
             app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
         <Button
             android:id="@+id/button_d"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginBottom="10dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:rotation="-135"
+            android:text="Button"
+            app:layout_constraintBottom_toTopOf="@+id/button_zero"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3" />
+
+        <ImageView
+            android:id="@+id/hapi_drum_j"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/anim_elevation"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/night_flower_j"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_e"
             android:layout_width="@dimen/height_smal_sound_button"
             android:layout_height="@dimen/weight_smal_sound_button"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginBottom="60dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
@@ -212,10 +254,10 @@
             app:layout_constraintStart_toStartOf="@+id/button_zero" />
 
         <Button
-            android:id="@+id/button_e"
+            android:id="@+id/button_f"
             android:layout_width="@dimen/weight_big_sound_button"
             android:layout_height="@dimen/height_big_sound_button"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="30dp"
             android:layout_marginBottom="6dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
@@ -225,10 +267,11 @@
             app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
         <Button
-            android:id="@+id/button_f"
+            android:id="@+id/button_g"
             android:layout_width="@dimen/weight_smal_sound_button"
             android:layout_height="@dimen/height_smal_sound_button"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginBottom="10dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"
@@ -236,11 +279,10 @@
             app:layout_constraintStart_toEndOf="@+id/button_zero" />
 
         <Button
-            android:id="@+id/button_g"
+            android:id="@+id/button_h"
             android:layout_width="@dimen/weight_big_sound_button"
             android:layout_height="@dimen/height_big_sound_button"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="50dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:rotation="225"
@@ -249,10 +291,23 @@
             app:layout_constraintTop_toBottomOf="@+id/button_zero" />
 
         <Button
-            android:id="@+id/button_h"
+            android:id="@+id/button_i"
+            android:layout_width="@dimen/weight_big_sound_button"
+            android:layout_height="@dimen/height_big_sound_button"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="60dp"
+            android:alpha="0"
+            android:elevation="@dimen/button_elevation"
+            android:rotation="45"
+            android:text="@android:string/VideoView_error_button"
+            app:layout_constraintStart_toEndOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/button_zero" />
+
+        <Button
+            android:id="@+id/button_j"
             android:layout_width="@dimen/height_smal_sound_button"
             android:layout_height="@dimen/weight_smal_sound_button"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:alpha="0"
             android:elevation="@dimen/button_elevation"
             android:text="Button"

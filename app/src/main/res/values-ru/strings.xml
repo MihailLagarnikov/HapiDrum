@@ -48,6 +48,19 @@
     <string name="weight_budda">1.6 кг</string>
     <string name="sound_budda">Ля минор</string>
 
+    //mounti_night_insrumaent
+    <string name="mounti_night_name">Ночь в горах</string>
+    <string name="diameter_mounti_night">22 см</string>
+    <string name="weight_mounti_night">1.6 кг</string>
+    <string name="sound_mounti_night">Хиджаз</string>
+
+    //night_flower_insrumaent
+    <string name="night_flower_name">Ночной цветок</string>
+    <string name="diameter_night_flower">22 cm</string>
+    <string name="weight_night_flower">1.6 kg</string>
+    <string name="sound_night_flower">До мажор</string>
+
+
 
     //top panel
     <string name="random">Рандом</string>

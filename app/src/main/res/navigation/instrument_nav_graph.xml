@@ -30,7 +30,11 @@
         android:name="ru.lagarnikov.hapidrum.ui.instruments.steklov.Budda"
         android:label="Budda" />
     <fragment
-        android:id="@+id/budda_test"
-        android:name="ru.lagarnikov.hapidrum.ui.instruments.steklov.Budda_test"
-        android:label="Budda_test" />
+        android:id="@+id/mountiNight"
+        android:name="ru.lagarnikov.hapidrum.ui.instruments.steklov.MountiNight"
+        android:label="MountiNight" />
+    <fragment
+        android:id="@+id/nightFlower"
+        android:name="ru.lagarnikov.hapidrum.ui.instruments.steklov.NightFlower"
+        android:label="NightFlower" />
 </navigation>

@@ -271,4 +271,6 @@ abstract class BaseInstrumentFragment : Fragment(),
             }
         })
     }
+
+    interface TenKeyInstrument
 }
